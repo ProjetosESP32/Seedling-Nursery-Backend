@@ -1,6 +1,6 @@
 package com.sistemasEmbarcados.gerenciamentoMudas.Resource;
 
-import com.sistemasEmbarcados.gerenciamentoMudas.Model.ArvoreMatriz;
+import com.sistemasEmbarcados.gerenciamentoMudas.Model.Plant;
 import com.sistemasEmbarcados.gerenciamentoMudas.Model.Especie;
 import com.sistemasEmbarcados.gerenciamentoMudas.Service.EspecieService;
 import com.sistemasEmbarcados.gerenciamentoMudas.dto.EspecieDTO;
@@ -19,12 +19,13 @@ public class EspecieResource {
     EspecieService especieService;
 
     @PostMapping("/save")
-    public ResponseEntity<Especie> salvarEspecie(@RequestBody EspecieDTO especieDTO) throws UnsupportedEncodingException {
+    public ResponseEntity<Especie> salvarEspecie(@RequestBody EspecieDTO especieDTO)
+            throws UnsupportedEncodingException {
         return ResponseEntity.ok(especieService.SalvarEspecie(especieDTO));
     }
 
     @GetMapping("/find/all")
-    public ResponseEntity<List<EspecieDTO>> buscarTodasEspecies(){
+    public ResponseEntity<List<EspecieDTO>> buscarTodasEspecies() {
         return ResponseEntity.ok(especieService.buscarTodasEspecies());
     }
 }

@@ -2,7 +2,7 @@ package com.sistemasEmbarcados.gerenciamentoMudas.Resource;
 
 import com.google.gson.Gson;
 //import com.sistemasEmbarcados.gerenciamentoMudas.Gateway.MqttGateway;
-import com.sistemasEmbarcados.gerenciamentoMudas.Model.ArvoreMatriz;
+import com.sistemasEmbarcados.gerenciamentoMudas.Model.Plant;
 import com.sistemasEmbarcados.gerenciamentoMudas.Model.Localizacao;
 import com.sistemasEmbarcados.gerenciamentoMudas.Model.ValorSensor;
 import com.sistemasEmbarcados.gerenciamentoMudas.Service.SensorService;

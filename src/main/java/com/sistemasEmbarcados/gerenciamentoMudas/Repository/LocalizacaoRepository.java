@@ -1,6 +1,6 @@
 package com.sistemasEmbarcados.gerenciamentoMudas.Repository;
 
-import com.sistemasEmbarcados.gerenciamentoMudas.Model.ArvoreMatriz;
+import com.sistemasEmbarcados.gerenciamentoMudas.Model.Plant;
 import com.sistemasEmbarcados.gerenciamentoMudas.Model.Localizacao;
 import com.sistemasEmbarcados.gerenciamentoMudas.Model.MicroControlador;
 import com.sistemasEmbarcados.gerenciamentoMudas.Model.Semente;

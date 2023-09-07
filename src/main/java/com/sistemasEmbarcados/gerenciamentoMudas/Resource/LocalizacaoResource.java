@@ -1,6 +1,6 @@
 package com.sistemasEmbarcados.gerenciamentoMudas.Resource;
 
-import com.sistemasEmbarcados.gerenciamentoMudas.Model.ArvoreMatriz;
+import com.sistemasEmbarcados.gerenciamentoMudas.Model.Plant;
 import com.sistemasEmbarcados.gerenciamentoMudas.Model.Localizacao;
 import com.sistemasEmbarcados.gerenciamentoMudas.Model.MicroControlador;
 import com.sistemasEmbarcados.gerenciamentoMudas.Service.LocalizacaoService;
@@ -23,22 +23,25 @@ public class LocalizacaoResource {
     }
 
     @PostMapping("/alocar")
-    public ResponseEntity<Localizacao> alocarSementesApartirIdArvoreMatriz(@RequestParam Long idArvoreMatriz, @RequestParam Long idLocalizacao ) {
-        return ResponseEntity.ok(localizacaoService.salvarListaSementesApartirIdArvoreMatriz(idArvoreMatriz,idLocalizacao));
+    public ResponseEntity<Localizacao> alocarSementesApartirIdArvoreMatriz(@RequestParam Long idArvoreMatriz,
+            @RequestParam Long idLocalizacao) {
+        return ResponseEntity
+                .ok(localizacaoService.salvarListaSementesApartirIdArvoreMatriz(idArvoreMatriz, idLocalizacao));
     }
 
     @PostMapping("/update/{id}")
-    public ResponseEntity<Localizacao> alterarListaMicroControladoresLocalizacao(@RequestParam Long id, @RequestBody List<MicroControlador> controladorList) {
-        return ResponseEntity.ok(localizacaoService.alterarListaMicroControladores(id,controladorList));
+    public ResponseEntity<Localizacao> alterarListaMicroControladoresLocalizacao(@RequestParam Long id,
+            @RequestBody List<MicroControlador> controladorList) {
+        return ResponseEntity.ok(localizacaoService.alterarListaMicroControladores(id, controladorList));
     }
 
     @GetMapping("/find/all")
-    public ResponseEntity<List<Localizacao>> buscarTodasLocalizacoes(){
+    public ResponseEntity<List<Localizacao>> buscarTodasLocalizacoes() {
         return ResponseEntity.ok(localizacaoService.buscarTodasAsLocalizacoes());
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Localizacao> buscarLocalizacao(@PathVariable Long id){
+    public ResponseEntity<Localizacao> buscarLocalizacao(@PathVariable Long id) {
         return ResponseEntity.ok(localizacaoService.buscarLocalizacaoById(id));
     }
 }

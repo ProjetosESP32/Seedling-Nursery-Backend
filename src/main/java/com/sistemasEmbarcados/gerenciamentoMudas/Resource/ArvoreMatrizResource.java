@@ -1,6 +1,6 @@
 package com.sistemasEmbarcados.gerenciamentoMudas.Resource;
 
-import com.sistemasEmbarcados.gerenciamentoMudas.Model.ArvoreMatriz;
+import com.sistemasEmbarcados.gerenciamentoMudas.Model.Plant;
 import com.sistemasEmbarcados.gerenciamentoMudas.Service.ArvoreMatrizService;
 import com.sistemasEmbarcados.gerenciamentoMudas.dto.ArvoreMatrizDTO;
 import com.sistemasEmbarcados.gerenciamentoMudas.dto.SementeDTO;
@@ -18,22 +18,22 @@ public class ArvoreMatrizResource {
     ArvoreMatrizService arvoreMatrizService;
 
     @PostMapping("/save")
-    public ResponseEntity<ArvoreMatriz> salvarArvoreMatriz(@RequestBody ArvoreMatrizDTO arvoreMatrizDTO){
+    public ResponseEntity<Plant> salvarArvoreMatriz(@RequestBody ArvoreMatrizDTO arvoreMatrizDTO) {
         return ResponseEntity.ok(arvoreMatrizService.salvarArvoreMatriz(arvoreMatrizDTO));
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<ArvoreMatrizDTO> buscarArvoreMatriz(@PathVariable Long id){
+    public ResponseEntity<ArvoreMatrizDTO> buscarArvoreMatriz(@PathVariable Long id) {
         return ResponseEntity.ok(arvoreMatrizService.buscarArvoreMatrizByIdDTO(id));
     }
 
     @PostMapping("/update")
-    public ResponseEntity<ArvoreMatriz> alterarSementeApartirIdArvoreMatriz(@RequestBody ArvoreMatrizDTO arvoreMatrizDTO){
+    public ResponseEntity<Plant> alterarSementeApartirIdArvoreMatriz(@RequestBody ArvoreMatrizDTO arvoreMatrizDTO) {
         return ResponseEntity.ok(arvoreMatrizService.atualizarInformacoesArvoreMatriz(arvoreMatrizDTO));
     }
 
     @GetMapping("/find/all")
-    public ResponseEntity<List<ArvoreMatrizDTO>> buscarTodasArvoresMatriz(){
+    public ResponseEntity<List<ArvoreMatrizDTO>> buscarTodasArvoresMatriz() {
         return ResponseEntity.ok(arvoreMatrizService.buscarTodasArvoresMatriz());
     }
 }
