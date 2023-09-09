@@ -1,19 +1,15 @@
 package com.ifmt.seedlingNursery.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.ifmt.seedlingNursery.Model.Plant;
 import com.ifmt.seedlingNursery.Service.PlantService;
-import com.ifmt.seedlingNursery.Service.PlantServiceImpl;
-import com.ifmt.seedlingNursery.dto.ArvoreMatrizDTO;
-import com.ifmt.seedlingNursery.dto.SementeDTO;
 
 import lombok.AllArgsConstructor;
-
-import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -25,6 +21,27 @@ public class PlantController {
     @GetMapping("/{id}")
     public ResponseEntity<Plant> getPlant(@PathVariable Long id) {
         return new ResponseEntity<>(plantService.getPlant(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/{specieId}")
+    public ResponseEntity<Plant> savePlant(@RequestBody Plant plant, @PathVariable Long specieId) {
+        return new ResponseEntity<>(plantService.savePlant(plant, specieId), HttpStatus.CREATED);
+    }
+
+    @GetMapping("specie/{specieId}")
+    public ResponseEntity<List<Plant>> getPlantsBySpecie(@PathVariable Long specieId) {
+        return new ResponseEntity<>(plantService.getSpeciePlants(specieId), HttpStatus.OK);
+    }
+
+    @GetMapping("address/{address}")
+    public ResponseEntity<List<Plant>> getPlantsByAddress(@PathVariable String address) {
+        return new ResponseEntity<>(plantService.getPlantsByAddress(address),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("shelf/{shelfId}")
+    public ResponseEntity<List<Plant>> getPlantsByShelf(@PathVariable int shelfId) {
+        return new ResponseEntity<>(plantService.getPlantsByShelf(shelfId), HttpStatus.OK);
     }
 
 }

@@ -4,15 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.ifmt.seedlingNursery.Model.Plant;
 import com.ifmt.seedlingNursery.Model.Specie;
 import com.ifmt.seedlingNursery.Service.SpecieServiceImpl;
-import com.ifmt.seedlingNursery.dto.EspecieDTO;
 
 import lombok.AllArgsConstructor;
 
-import java.io.UnsupportedEncodingException;
-import java.net.http.HttpResponse;
 import java.util.List;
 
 @AllArgsConstructor

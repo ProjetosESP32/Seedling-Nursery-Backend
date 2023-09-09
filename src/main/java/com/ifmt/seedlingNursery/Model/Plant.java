@@ -75,7 +75,7 @@ public class Plant {
     private Specie specie;
 
     @Column(name = "leafs") // receives the leafs number of the plant
-    private String leafs;
+    private int leafs;
 
     @Column(name = "planting_date")
     private LocalDate plantingDate;
@@ -103,9 +103,9 @@ public class Plant {
     private String pestRecord;
 
     @Basic(fetch = FetchType.LAZY)
-    @Column(name = "imagem_matriz", columnDefinition = "bytea")
+    @Column(name = "image", columnDefinition = "bytea")
     @JsonIgnore
-    private byte[] imagem;
+    private byte[] image;
 
     @Column(name = "observations", length = 10000)
     private String observations;

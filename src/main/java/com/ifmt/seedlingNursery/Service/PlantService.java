@@ -11,4 +11,8 @@ public interface PlantService {
 
   public List<Plant> getSpeciePlants(Long specieId);
 
+  public List<Plant> getPlantsByAddress(String address);
+
+  public List<Plant> getPlantsByShelf(int shelfId);
+
 }
