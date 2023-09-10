@@ -16,4 +16,7 @@ public interface PlantRepository extends JpaRepository<Plant, Long> {
 
   List<Plant> findByShelf(int shelf);
 
+  @Query("SELECT COUNT(id) FROM Plant")
+  int getPlantsCount();
+
 }

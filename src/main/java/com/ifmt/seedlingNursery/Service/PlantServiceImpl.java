@@ -1,5 +1,6 @@
 package com.ifmt.seedlingNursery.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,21 @@ public class PlantServiceImpl implements PlantService {
   }
 
   @Override
+  public List<Plant> getAllPlants() {
+    return plantRepository.findAll();
+  }
+
+  @Override
+  public List<Plant> getPlantsPage(int index, int pageSize) {
+    List<Plant> plants = plantRepository.findAll();
+    List<Plant> plantsPage = new ArrayList<>();
+    for (int i = index * pageSize; i < (index + 1) * pageSize && i < plants.size(); i++) {
+      plantsPage.add(plants.get(i));
+    }
+    return plantsPage;
+  }
+
+  @Override
   public List<Plant> getSpeciePlants(Long specieId) {
     return plantRepository.findBySpecieId(specieId);
   }
@@ -47,6 +63,11 @@ public class PlantServiceImpl implements PlantService {
   @Override
   public List<Plant> getPlantsByShelf(int shelfId) {
     return plantRepository.findByShelf(shelfId);
+  }
+
+  @Override
+  public int getPlantsCount() {
+    return plantRepository.getPlantsCount();
   }
 
   // unwrap

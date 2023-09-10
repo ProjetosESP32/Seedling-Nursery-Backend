@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.ifmt.seedlingNursery.Model.Specie;
 import com.ifmt.seedlingNursery.Repository.SpecieRepository;
-import com.ifmt.seedlingNursery.dto.EspecieDTO;
 import com.ifmt.seedlingNursery.exception.EntityNotFoundException;
 
 import lombok.AllArgsConstructor;
