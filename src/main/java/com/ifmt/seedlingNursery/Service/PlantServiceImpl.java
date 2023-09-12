@@ -10,6 +10,7 @@ import com.ifmt.seedlingNursery.Model.Plant;
 import com.ifmt.seedlingNursery.Model.Specie;
 import com.ifmt.seedlingNursery.Repository.PlantRepository;
 import com.ifmt.seedlingNursery.Repository.SpecieRepository;
+import com.ifmt.seedlingNursery.dto.SpeciesPageRow;
 import com.ifmt.seedlingNursery.exception.EntityNotFoundException;
 
 import lombok.AllArgsConstructor;
@@ -41,16 +42,6 @@ public class PlantServiceImpl implements PlantService {
   }
 
   @Override
-  public List<Plant> getPlantsPage(int index, int pageSize) {
-    List<Plant> plants = plantRepository.findAll();
-    List<Plant> plantsPage = new ArrayList<>();
-    for (int i = index * pageSize; i < (index + 1) * pageSize && i < plants.size(); i++) {
-      plantsPage.add(plants.get(i));
-    }
-    return plantsPage;
-  }
-
-  @Override
   public List<Plant> getSpeciePlants(Long specieId) {
     return plantRepository.findBySpecieId(specieId);
   }
@@ -65,9 +56,82 @@ public class PlantServiceImpl implements PlantService {
     return plantRepository.findByShelf(shelfId);
   }
 
+  // to populate rows of the interface
+  @Override
+  public List<SpeciesPageRow> getPlantsPerSpeciePage(int index, int pageSize, Long specieId, int matrix,
+      int seedling, int seed) {
+
+    // plants receives the plants of the selected specie
+    List<Plant> plants = plantRepository.findBySpecieId(specieId);
+
+    /*
+     * plantsConstrained receives from plants only those that matches the selection
+     * (matrix, seedling, seed)
+     */
+    List<Plant> plantsConstrained = new ArrayList<>();
+    for (Plant plant : plants) {
+      switch (plant.getStage()) {
+        case 0:
+          if (matrix > 0) {
+            plantsConstrained.add(plant);
+          }
+          break;
+        case 1:
+          if (seedling > 0) {
+            plantsConstrained.add(plant);
+          }
+          break;
+        case 2:
+          if (seed > 0) {
+            plantsConstrained.add(plant);
+          }
+      }
+    }
+
+    // plants page receives only <pagesize> records of plants
+    List<Plant> plantsPage = new ArrayList<>();
+    for (int i = index * pageSize; i < (index + 1) * pageSize && i < plantsConstrained.size(); i++) {
+      plantsPage.add(plantsConstrained.get(i));
+    }
+
+    /*
+     * populates the object rowObject with some datas from the selected plants to
+     * display it in the table of plantsBySpecie object in the interface
+     */
+    List<SpeciesPageRow> rowObject = new ArrayList<>();
+    for (Plant plant : plantsPage) {
+      String currentLocation = plant.getAddress().length() > 0 ? plant.getAddress()
+          : "Bancada " + Integer.toString(plant.getShelf());
+      rowObject.add(new SpeciesPageRow(plant.getId(), plant.getStage(), plant.getPlantingDate(), currentLocation));
+    }
+    return rowObject;
+  }
+
+  // counts
   @Override
   public int getPlantsCount() {
     return plantRepository.getPlantsCount();
+  }
+
+  @Override
+  public int getPlantsBySpecieCount(Long specieId, int matrix, int seedling, int seed) {
+    int matrixCount = 0;
+    int seedlingCount = 0;
+    int seedCount = 0;
+
+    Specie specie = SpecieServiceImpl.unwrapSpecie(specieRepository.findById(specieId), specieId);
+
+    if (matrix > 0) {
+      matrixCount = plantRepository.getPlantsBySpecieCount(0, specie);
+    }
+    if (seedling > 0) {
+      seedlingCount = plantRepository.getPlantsBySpecieCount(1, specie);
+    }
+    if (seed > 0) {
+      seedCount = plantRepository.getPlantsBySpecieCount(2, specie);
+    }
+
+    return (matrixCount + seedlingCount + seedCount);
   }
 
   // unwrap
