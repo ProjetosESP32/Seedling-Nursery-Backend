@@ -16,6 +16,8 @@ public interface PlantRepository extends JpaRepository<Plant, Long> {
 
   List<Plant> findByShelf(int shelf);
 
+  List<Plant> findByOriginMatrix(Long originMatrix);
+
   @Query("SELECT COUNT(id) FROM Plant")
   int getPlantsCount();
 
@@ -24,4 +26,7 @@ public interface PlantRepository extends JpaRepository<Plant, Long> {
 
   @Query("SELECT COUNT(*) FROM Plant WHERE shelf=:shelf")
   int getPlantsByShelfCount(int shelf);
+
+  @Query("SELECT COUNT(*) FROM Plant WHERE originMatrix=:matrix")
+  int getPlantsByMatrixCount(Long matrix);
 }

@@ -59,6 +59,24 @@ public class PlantServiceImpl implements PlantService {
 
   // to populate rows of the interface
   @Override
+  public List<SpeciesPageRow> getPlantsByMatrixPage(int index, int pageSize, Long matrixId) {
+    List<Plant> plants = plantRepository.findByOriginMatrix(matrixId);
+    List<Plant> plantsPage = new ArrayList<>();
+    for (int i = index * pageSize; i < (index + 1) * pageSize && i < plants.size(); i++) {
+      plantsPage.add(plants.get(i));
+    }
+
+    List<SpeciesPageRow> rowObject = new ArrayList<>();
+    for (Plant plant : plantsPage) {
+      String currentLocation = plant.getAddress().length() > 0 ? plant.getAddress()
+          : "Bancada " + Integer.toString(plant.getShelf());
+      rowObject.add(new SpeciesPageRow(plant.getId(), plant.getStage(), plant.getPlantingDate(), currentLocation));
+    }
+
+    return rowObject;
+  }
+
+  @Override
   public List<SpeciesPageRow> getPlantsBySpeciePage(int index, int pageSize, Long specieId, int matrix,
       int seedling, int seed) {
 
@@ -156,6 +174,11 @@ public class PlantServiceImpl implements PlantService {
   @Override
   public int getPlantsByShelfCount(int shelf) {
     return plantRepository.getPlantsByShelfCount(shelf);
+  }
+
+  @Override
+  public int getPlantsByMatrixCount(Long matrixId) {
+    return plantRepository.getPlantsByMatrixCount(matrixId);
   }
 
   // unwrap

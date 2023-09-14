@@ -85,6 +85,19 @@ public class PlantController {
         return new ResponseEntity<>(row, header, HttpStatus.OK);
     }
 
+    @GetMapping("/plants-by-matrix-page/{index}/page-size/{pageSize}/matrix/{matrixId}")
+    public ResponseEntity<List<SpeciesPageRow>> getPlantsByMatrixPage(@PathVariable int index,
+            @PathVariable int pageSize, @PathVariable Long matrixId) {
+
+        List<SpeciesPageRow> row = plantService.getPlantsByMatrixPage(index, pageSize, matrixId);
+        int num = plantService.getPlantsByMatrixCount(matrixId);
+
+        HttpHeaders header = new HttpHeaders();
+        header.add("tableSize", Integer.toString(num));
+
+        return new ResponseEntity<>(row, header, HttpStatus.OK);
+    }
+
     // counts
 
     @GetMapping("/count")

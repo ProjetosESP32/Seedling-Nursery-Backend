@@ -21,8 +21,7 @@ public interface PlantService {
 
   // pages table rows
 
-  // public List<SpeciesPageRow> getPlantsByIdPage(int index, int pageSize, Long
-  // id);
+  public List<SpeciesPageRow> getPlantsByMatrixPage(int index, int pageSize, Long matrixId);
 
   public List<SpeciesPageRow> getPlantsBySpeciePage(int index, int pageSize, Long specieId, int matrix,
       int seedling,
@@ -37,5 +36,7 @@ public interface PlantService {
   public int getPlantsBySpecieCount(Long specie, int matrix, int seedling, int seed);
 
   public int getPlantsByShelfCount(int shelf);
+
+  public int getPlantsByMatrixCount(Long matrixId);
 
 }
