@@ -29,4 +29,7 @@ public interface PlantRepository extends JpaRepository<Plant, Long> {
 
   @Query("SELECT COUNT(*) FROM Plant WHERE originMatrix=:matrix")
   int getPlantsByMatrixCount(Long matrix);
+
+  @Query("Select COUNT(*) FROM Plant a WHERE a.address LIKE %?1%")
+  int getByAddressCount(String address);
 }

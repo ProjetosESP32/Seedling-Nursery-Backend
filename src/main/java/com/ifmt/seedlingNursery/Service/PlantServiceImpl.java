@@ -144,6 +144,23 @@ public class PlantServiceImpl implements PlantService {
     return rows;
   }
 
+  @Override
+  public List<SpeciesPageRow> getPlantsByAddressPage(int index, int pageSize, String address) {
+    List<Plant> plants = plantRepository.findByAddressLike(address);
+    List<Plant> plantsPage = new ArrayList<>();
+    for (int i = index * pageSize; i < (index + 1) * pageSize && i < plants.size(); i++) {
+      plantsPage.add(plants.get(i));
+    }
+
+    List<SpeciesPageRow> rowObject = new ArrayList<>();
+    for (Plant plant : plantsPage) {
+      String currentLocation = plant.getAddress().length() > 0 ? plant.getAddress()
+          : "Bancada " + Integer.toString(plant.getShelf());
+      rowObject.add(new SpeciesPageRow(plant.getId(), plant.getStage(), plant.getPlantingDate(), currentLocation));
+    }
+    return rowObject;
+  }
+
   // row counts
   @Override
   public int getPlantsCount() {
@@ -179,6 +196,11 @@ public class PlantServiceImpl implements PlantService {
   @Override
   public int getPlantsByMatrixCount(Long matrixId) {
     return plantRepository.getPlantsByMatrixCount(matrixId);
+  }
+
+  @Override
+  public int getPlantsByAddressCount(String address) {
+    return plantRepository.getByAddressCount(address);
   }
 
   // unwrap

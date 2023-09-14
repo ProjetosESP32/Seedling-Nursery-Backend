@@ -29,6 +29,8 @@ public interface PlantService {
 
   public List<ShelvesPageRow> getPlantsByShelfPage(int index, int pageSize, int shelfId);
 
+  public List<SpeciesPageRow> getPlantsByAddressPage(int index, int pageSize, String address);
+
   // rows count
 
   public int getPlantsCount();
@@ -38,5 +40,7 @@ public interface PlantService {
   public int getPlantsByShelfCount(int shelf);
 
   public int getPlantsByMatrixCount(Long matrixId);
+
+  public int getPlantsByAddressCount(String address);
 
 }
