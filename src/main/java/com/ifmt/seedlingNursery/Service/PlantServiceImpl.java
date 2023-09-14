@@ -10,6 +10,7 @@ import com.ifmt.seedlingNursery.Model.Plant;
 import com.ifmt.seedlingNursery.Model.Specie;
 import com.ifmt.seedlingNursery.Repository.PlantRepository;
 import com.ifmt.seedlingNursery.Repository.SpecieRepository;
+import com.ifmt.seedlingNursery.dto.ShelvesPageRow;
 import com.ifmt.seedlingNursery.dto.SpeciesPageRow;
 import com.ifmt.seedlingNursery.exception.EntityNotFoundException;
 
@@ -58,7 +59,7 @@ public class PlantServiceImpl implements PlantService {
 
   // to populate rows of the interface
   @Override
-  public List<SpeciesPageRow> getPlantsPerSpeciePage(int index, int pageSize, Long specieId, int matrix,
+  public List<SpeciesPageRow> getPlantsBySpeciePage(int index, int pageSize, Long specieId, int matrix,
       int seedling, int seed) {
 
     // plants receives the plants of the selected specie
@@ -107,7 +108,25 @@ public class PlantServiceImpl implements PlantService {
     return rowObject;
   }
 
-  // counts
+  @Override
+  public List<ShelvesPageRow> getPlantsByShelfPage(int index, int pageSize, int shelfId) {
+    List<Plant> plants = plantRepository.findByShelf(shelfId);
+    List<Plant> plantsPage = new ArrayList<>();
+    for (int i = index * pageSize; i < (index + 1) * pageSize && i < plants.size(); i++) {
+      plantsPage.add(plants.get(i));
+    }
+
+    List<ShelvesPageRow> rows = new ArrayList<>();
+    for (Plant plant : plantsPage) {
+      ShelvesPageRow row = new ShelvesPageRow(plant.getId(), plant.getOriginMatrix(), plant.getPlantingDate(),
+          plant.getSpecie().getName());
+      rows.add(row);
+    }
+
+    return rows;
+  }
+
+  // row counts
   @Override
   public int getPlantsCount() {
     return plantRepository.getPlantsCount();
@@ -132,6 +151,11 @@ public class PlantServiceImpl implements PlantService {
     }
 
     return (matrixCount + seedlingCount + seedCount);
+  }
+
+  @Override
+  public int getPlantsByShelfCount(int shelf) {
+    return plantRepository.getPlantsByShelfCount(shelf);
   }
 
   // unwrap

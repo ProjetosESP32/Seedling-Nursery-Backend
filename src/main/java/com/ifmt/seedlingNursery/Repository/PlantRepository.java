@@ -22,4 +22,6 @@ public interface PlantRepository extends JpaRepository<Plant, Long> {
   @Query("SELECT COUNT(*) FROM Plant WHERE stage=:stage AND specie=:specie")
   int getPlantsBySpecieCount(int stage, Specie specie);
 
+  @Query("SELECT COUNT(*) FROM Plant WHERE shelf=:shelf")
+  int getPlantsByShelfCount(int shelf);
 }

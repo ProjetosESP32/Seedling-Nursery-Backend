@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.ifmt.seedlingNursery.Model.Plant;
 import com.ifmt.seedlingNursery.Service.PlantService;
+import com.ifmt.seedlingNursery.dto.ShelvesPageRow;
 import com.ifmt.seedlingNursery.dto.SpeciesPageRow;
 
 import lombok.AllArgsConstructor;
@@ -67,8 +68,21 @@ public class PlantController {
         header.add("tableSize",
                 Integer.toString(plantService.getPlantsBySpecieCount(specieId, matrix, seedling, seed)));
         return new ResponseEntity<>(
-                plantService.getPlantsPerSpeciePage(index, pageSize, specieId, matrix, seedling, seed), header,
+                plantService.getPlantsBySpeciePage(index, pageSize, specieId, matrix, seedling, seed), header,
                 HttpStatus.OK);
+    }
+
+    @GetMapping("/plants-by-shelf-page/{index}/page-size/{pageSize}/shelf/{shelfId}")
+    public ResponseEntity<List<ShelvesPageRow>> getPlantsByShelfPage(@PathVariable int index,
+            @PathVariable int pageSize, @PathVariable int shelfId) {
+
+        List<ShelvesPageRow> row = plantService.getPlantsByShelfPage(index, pageSize, shelfId);
+        int num = plantService.getPlantsByShelfCount(shelfId);
+
+        HttpHeaders header = new HttpHeaders();
+        header.add("tableSize", Integer.toString(num));
+
+        return new ResponseEntity<>(row, header, HttpStatus.OK);
     }
 
     // counts

@@ -3,6 +3,7 @@ package com.ifmt.seedlingNursery.Service;
 import java.util.List;
 
 import com.ifmt.seedlingNursery.Model.Plant;
+import com.ifmt.seedlingNursery.dto.ShelvesPageRow;
 import com.ifmt.seedlingNursery.dto.SpeciesPageRow;
 
 public interface PlantService {
@@ -18,11 +19,23 @@ public interface PlantService {
 
   public List<Plant> getPlantsByShelf(int shelfId);
 
-  public List<SpeciesPageRow> getPlantsPerSpeciePage(int index, int pageSize, Long specieId, int matrix,
+  // pages table rows
+
+  // public List<SpeciesPageRow> getPlantsByIdPage(int index, int pageSize, Long
+  // id);
+
+  public List<SpeciesPageRow> getPlantsBySpeciePage(int index, int pageSize, Long specieId, int matrix,
       int seedling,
       int seed);
+
+  public List<ShelvesPageRow> getPlantsByShelfPage(int index, int pageSize, int shelfId);
+
+  // rows count
 
   public int getPlantsCount();
 
   public int getPlantsBySpecieCount(Long specie, int matrix, int seedling, int seed);
+
+  public int getPlantsByShelfCount(int shelf);
+
 }
