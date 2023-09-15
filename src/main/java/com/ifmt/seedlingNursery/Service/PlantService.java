@@ -43,4 +43,6 @@ public interface PlantService {
 
   public int getPlantsByAddressCount(String address);
 
+  public int[] getPlantsCountByShelf();
+
 }

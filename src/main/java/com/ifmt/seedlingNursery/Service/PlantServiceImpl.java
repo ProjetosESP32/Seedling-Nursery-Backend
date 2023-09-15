@@ -203,6 +203,15 @@ public class PlantServiceImpl implements PlantService {
     return plantRepository.getByAddressCount(address);
   }
 
+  @Override
+  public int[] getPlantsCountByShelf() {
+    int shelvesCount[] = new int[10];
+    for (int i = 0; i < 10; i++) {
+      shelvesCount[i] = plantRepository.getPlantsByShelfCount(i + 1);
+    }
+    return shelvesCount;
+  }
+
   // unwrap
   static Plant unwrapPlant(Optional<Plant> entity, Long id) {
     if (entity.isPresent()) {

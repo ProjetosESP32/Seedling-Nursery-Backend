@@ -118,4 +118,9 @@ public class PlantController {
         return plantService.getPlantsCount();
     }
 
+    @GetMapping("/count/byShelf")
+    public int[] getPlantsCountByShelf() {
+        return plantService.getPlantsCountByShelf();
+    }
+
 }
