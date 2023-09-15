@@ -30,5 +30,6 @@ public class Valve {
   private String observations;
 
   @Column(name = "current-state")
-  private boolean currentState;
+  private Boolean currentState;
+
 }

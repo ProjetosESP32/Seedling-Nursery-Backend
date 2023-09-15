@@ -1,13 +1,14 @@
 package com.ifmt.seedlingNursery.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.ifmt.seedlingNursery.Model.Specie;
 import com.ifmt.seedlingNursery.Model.Valve;
 import com.ifmt.seedlingNursery.Repository.ValveRepository;
+import com.ifmt.seedlingNursery.dto.ValvesStateDto;
 import com.ifmt.seedlingNursery.exception.EntityNotFoundException;
 
 import lombok.AllArgsConstructor;
@@ -36,6 +37,16 @@ public class ValveServiceImpl implements ValveService {
   @Override
   public List<Valve> getValvesByShelf(int shelf) {
     return valveRepository.findByShelf(shelf);
+  }
+
+  @Override
+  public List<ValvesStateDto> getValvesStates() {
+    List<Valve> valves = valveRepository.findAll();
+    List<ValvesStateDto> states = new ArrayList<>();
+    for (Valve valve : valves) {
+      states.add(new ValvesStateDto(valve.getId(), valve.getCurrentState()));
+    }
+    return states;
   }
 
   static Valve unwrapValve(Optional<Valve> entity, Long id) {

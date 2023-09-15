@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ifmt.seedlingNursery.Model.Valve;
 import com.ifmt.seedlingNursery.Service.ValveService;
+import com.ifmt.seedlingNursery.dto.ValvesStateDto;
 
 import lombok.AllArgsConstructor;
 
@@ -40,5 +41,11 @@ public class ValveController {
   @GetMapping("/shelf/{shelfId}")
   public ResponseEntity<List<Valve>> getValvesByShelf(@PathVariable int shelfId) {
     return new ResponseEntity<>(valveService.getValvesByShelf(shelfId), HttpStatus.OK);
+  }
+
+  @GetMapping("/states")
+  public ResponseEntity<List<ValvesStateDto>> getValvesStates() {
+    return new ResponseEntity<>(valveService.getValvesStates(), HttpStatus.OK);
+
   }
 }
