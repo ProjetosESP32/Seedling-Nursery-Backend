@@ -8,11 +8,11 @@
 		<version>3.0.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.sistemasEmbarcados</groupId>
-	<artifactId>gerenciamentoMudas</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>gerenciamentoMudas</name>
-	<description>Projeto da matéria de sistemas embarcados para controlar mudas e sementes.</description>
+	<groupId>com.ifmt</groupId>
+	<artifactId>seedlingNursery</artifactId>
+	<version>0.1</version>
+	<name>seedlingNursery</name>
+	<description>Automation project for a reforestation seedlings nursery</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
