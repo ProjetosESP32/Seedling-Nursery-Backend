@@ -20,7 +20,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "sensor-record")
+@Table(name = "sensor_record")
 public class SensorRecord {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,7 @@ public class SensorRecord {
   @Column(name = "value")
   private double value;
 
-  @Column(name = "time-stamp")
+  @Column(name = "time_stamp")
   private LocalDateTime timeStamp;
 
   @ManyToOne(optional = false)

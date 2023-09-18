@@ -1,5 +1,6 @@
 package com.ifmt.seedlingNursery.web;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -11,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ifmt.seedlingNursery.Model.Sensor;
 import com.ifmt.seedlingNursery.Model.SensorRecord;
 import com.ifmt.seedlingNursery.Service.SensorRecordService;
+import com.ifmt.seedlingNursery.dto.TimePeriodDto;
 
 import lombok.AllArgsConstructor;
 
@@ -41,8 +42,17 @@ public class SensorRecordController {
   }
 
   @GetMapping("/sensor/{sensorId}")
-  public ResponseEntity<List<SensorRecord>> getAllBySensor(@PathVariable Long sensorId) {
-    return new ResponseEntity<List<SensorRecord>>(sensorRecordService.getAllBySensor(sensorId), HttpStatus.OK);
+  public ResponseEntity<List<SensorRecord>> getAllBySensor(@PathVariable Long sensorId,
+      @RequestBody TimePeriodDto times) {
+    return new ResponseEntity<List<SensorRecord>>(
+        sensorRecordService.getAllBySensor(sensorId, times.getTime1(), times.getTime2()),
+        HttpStatus.OK);
+  }
+
+  @GetMapping("/period")
+  public ResponseEntity<List<SensorRecord>> getAllBetweenTimes(@RequestBody TimePeriodDto times) {
+    return new ResponseEntity<List<SensorRecord>>(
+        sensorRecordService.getAllBetweenTimes(times.getTime1(), times.getTime2()), HttpStatus.OK);
   }
 
 }

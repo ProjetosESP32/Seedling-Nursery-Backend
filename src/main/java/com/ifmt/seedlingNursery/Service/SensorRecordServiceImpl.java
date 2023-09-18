@@ -39,9 +39,14 @@ public class SensorRecordServiceImpl implements SensorRecordService {
   }
 
   @Override
-  public List<SensorRecord> getAllBySensor(Long sensorId) {
+  public List<SensorRecord> getAllBySensor(Long sensorId, LocalDateTime time1, LocalDateTime time2) {
     Sensor sensor = SensorServiceImpl.unwrapSensor(sensorRepository.findById(sensorId), sensorId);
-    return sensorRecordRepository.findBySensor(sensor);
+    return sensorRecordRepository.findBySensor(sensor, time1, time2);
+  }
+
+  @Override
+  public List<SensorRecord> getAllBetweenTimes(LocalDateTime time1, LocalDateTime time2) {
+    return sensorRecordRepository.findREcordBetweenTimes(time1, time2);
   }
 
   static SensorRecord unwrapSensorRecord(Optional<SensorRecord> entity, Long id) {
