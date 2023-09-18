@@ -46,6 +46,5 @@ public class ValveController {
   @GetMapping("/states")
   public ResponseEntity<List<ValvesStateDto>> getValvesStates() {
     return new ResponseEntity<>(valveService.getValvesStates(), HttpStatus.OK);
-
   }
 }

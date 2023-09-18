@@ -3,29 +3,36 @@ package com.ifmt.seedlingNursery.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.List;
-
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "sensores")
+@Table(name = "sensor")
 public class Sensor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id_sensor")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "tipo_sensor")
-    private String tipo;
+    @Column(name = "id-microcontroller")
+    private int idMicrocontroller;
 
-    @OneToMany(mappedBy = "sensor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonManagedReference(value = "sensor-valorSensor")
-    private List<ValorSensor> listValores;
+    @Column(name = "id-location")
+    private int idLocation;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_microcontrolador")
-    @JsonBackReference
-    private MicroControlador microControlador;
+    @Column(name = "type")
+    private String type;
+
+    @Column(name = "mesure")
+    private String mesure;
+
+    @Column(name = "observations", length = 10000)
+    private String observations;
 }
