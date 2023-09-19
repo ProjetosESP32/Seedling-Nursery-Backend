@@ -102,11 +102,6 @@ public class Plant {
     @Column(name = "pest_record", length = 10000)
     private String pestRecord;
 
-    @Basic(fetch = FetchType.LAZY)
-    @Column(name = "image", columnDefinition = "bytea")
-    @JsonIgnore
-    private byte[] image;
-
     @Column(name = "observations", length = 10000)
     private String observations;
 

@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.ifmt.seedlingNursery.Model.Plant;
+import com.ifmt.seedlingNursery.Model.PlantImages;
 import com.ifmt.seedlingNursery.Model.Specie;
+import com.ifmt.seedlingNursery.Repository.PlantImagesRepository;
 import com.ifmt.seedlingNursery.Repository.PlantRepository;
 import com.ifmt.seedlingNursery.Repository.SpecieRepository;
 import com.ifmt.seedlingNursery.dto.ShelvesPageRow;
@@ -23,6 +26,7 @@ public class PlantServiceImpl implements PlantService {
   // already being injected because of the constructor
   PlantRepository plantRepository;
   SpecieRepository specieRepository;
+  PlantImagesRepository plantImagesRepository;
 
   @Override
   public Plant getPlant(Long id) {
@@ -34,6 +38,8 @@ public class PlantServiceImpl implements PlantService {
   public Plant savePlant(Plant plant, Long specieId) {
     Specie specie = SpecieServiceImpl.unwrapSpecie(specieRepository.findById(specieId), specieId);
     plant.setSpecie(specie);
+    PlantImages image = new PlantImages(plant.getId(), plant.getImage());
+    plantImagesRepository.save(image);
     return plantRepository.save(plant);
   }
 
