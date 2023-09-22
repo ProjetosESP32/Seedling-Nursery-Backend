@@ -21,8 +21,4 @@ public class Specie {
 
     @Column(name = "description", length = 10000)
     private String description;
-
-    @Basic(fetch = FetchType.LAZY)
-    @Column(name = "image", columnDefinition = "bytea")
-    private byte[] image;
 }
