@@ -3,13 +3,14 @@ package com.ifmt.seedlingNursery.Service;
 import java.util.List;
 
 import com.ifmt.seedlingNursery.Model.Plant;
+import com.ifmt.seedlingNursery.dto.PlantDto;
 import com.ifmt.seedlingNursery.dto.ShelvesPageRow;
 import com.ifmt.seedlingNursery.dto.SpeciesPageRow;
 
 public interface PlantService {
   public Plant getPlant(Long id);
 
-  public Plant savePlant(Plant plant, Long specieId);
+  public Plant savePlant(PlantDto plantDto, Long specieId);
 
   public List<Plant> getAllPlants();
 

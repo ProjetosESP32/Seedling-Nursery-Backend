@@ -13,6 +13,7 @@ import com.ifmt.seedlingNursery.Model.Specie;
 import com.ifmt.seedlingNursery.Repository.PlantImagesRepository;
 import com.ifmt.seedlingNursery.Repository.PlantRepository;
 import com.ifmt.seedlingNursery.Repository.SpecieRepository;
+import com.ifmt.seedlingNursery.dto.PlantDto;
 import com.ifmt.seedlingNursery.dto.ShelvesPageRow;
 import com.ifmt.seedlingNursery.dto.SpeciesPageRow;
 import com.ifmt.seedlingNursery.exception.EntityNotFoundException;
@@ -34,11 +35,19 @@ public class PlantServiceImpl implements PlantService {
     return unwrapPlant(plant, id);
   }
 
+  /*
+   * The controller method below will receive an object that has image and no
+   * specie;
+   * It will take the image and store it in a separated table;
+   * It will search for the specie and store it with the plant record.
+   */
   @Override
-  public Plant savePlant(Plant plant, Long specieId) {
+  public Plant savePlant(PlantDto plantDto, Long specieId) {
     Specie specie = SpecieServiceImpl.unwrapSpecie(specieRepository.findById(specieId), specieId);
+    Plant plant = new Plant();
+    BeanUtils.copyProperties(plantDto, plant);
     plant.setSpecie(specie);
-    PlantImages image = new PlantImages(plant.getId(), plant.getImage());
+    PlantImages image = new PlantImages(plantDto.getId(), plantDto.getImage());
     plantImagesRepository.save(image);
     return plantRepository.save(plant);
   }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.ifmt.seedlingNursery.Model.Plant;
 import com.ifmt.seedlingNursery.Service.PlantService;
+import com.ifmt.seedlingNursery.dto.PlantDto;
 import com.ifmt.seedlingNursery.dto.ShelvesPageRow;
 import com.ifmt.seedlingNursery.dto.SpeciesPageRow;
 
@@ -27,8 +28,8 @@ public class PlantController {
     }
 
     @PostMapping("/{specieId}")
-    public ResponseEntity<Plant> savePlant(@RequestBody Plant plant, @PathVariable Long specieId) {
-        return new ResponseEntity<>(plantService.savePlant(plant, specieId), HttpStatus.CREATED);
+    public ResponseEntity<Plant> savePlant(@RequestBody PlantDto plantDto, @PathVariable Long specieId) {
+        return new ResponseEntity<>(plantService.savePlant(plantDto, specieId), HttpStatus.CREATED);
     }
 
     @GetMapping("/all")
