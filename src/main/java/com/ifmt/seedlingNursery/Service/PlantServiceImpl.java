@@ -43,13 +43,20 @@ public class PlantServiceImpl implements PlantService {
    */
   @Override
   public Plant savePlant(PlantDto plantDto, Long specieId) {
+    // building the Plant entity
     Specie specie = SpecieServiceImpl.unwrapSpecie(specieRepository.findById(specieId), specieId);
     Plant plant = new Plant();
     BeanUtils.copyProperties(plantDto, plant);
     plant.setSpecie(specie);
-    PlantImages image = new PlantImages(plantDto.getId(), plantDto.getImage());
+
+    // saving plant
+    Plant plant2 = plantRepository.save(plant);
+
+    // getting and saving image
+    PlantImages image = new PlantImages(plant2.getId(), plantDto.getImage());
     plantImagesRepository.save(image);
-    return plantRepository.save(plant);
+
+    return plant2;
   }
 
   @Override

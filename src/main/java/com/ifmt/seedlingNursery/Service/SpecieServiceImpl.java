@@ -1,9 +1,13 @@
 package com.ifmt.seedlingNursery.Service;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.ifmt.seedlingNursery.Model.Specie;
+import com.ifmt.seedlingNursery.Model.SpecieImages;
+import com.ifmt.seedlingNursery.Repository.SpecieImagesRepository;
 import com.ifmt.seedlingNursery.Repository.SpecieRepository;
+import com.ifmt.seedlingNursery.dto.SpecieDto;
 import com.ifmt.seedlingNursery.exception.EntityNotFoundException;
 
 import lombok.AllArgsConstructor;
@@ -17,6 +21,7 @@ import java.util.Optional;
 public class SpecieServiceImpl implements SpecieService {
 
     SpecieRepository specieRepository;
+    SpecieImagesRepository specieImagesRepository;
 
     @Override
     public Specie getSpecie(Long id) {
@@ -24,8 +29,19 @@ public class SpecieServiceImpl implements SpecieService {
     }
 
     @Override
-    public Specie saveSpecie(Specie specie) {
-        return specieRepository.save(specie);
+    public Specie saveSpecie(SpecieDto specieDto) {
+        // building Specie entity
+        Specie specie = new Specie();
+        BeanUtils.copyProperties(specieDto, specie);
+
+        // saving to repo
+        Specie specie2 = specieRepository.save(specie);
+
+        // getting and saving image
+        SpecieImages image = new SpecieImages(specie2.getId(), specieDto.getImage());
+        specieImagesRepository.save(image);
+
+        return specie2;
     }
 
     @Override

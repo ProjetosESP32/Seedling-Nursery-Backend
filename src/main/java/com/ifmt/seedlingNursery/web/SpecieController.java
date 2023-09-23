@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.ifmt.seedlingNursery.Model.Specie;
 import com.ifmt.seedlingNursery.Service.SpecieServiceImpl;
+import com.ifmt.seedlingNursery.dto.SpecieDto;
 
 import lombok.AllArgsConstructor;
 
@@ -24,8 +25,8 @@ public class SpecieController {
     }
 
     @PostMapping
-    public ResponseEntity<Specie> saveSpecie(@RequestBody Specie specie) {
-        return new ResponseEntity<Specie>(specieService.saveSpecie(specie), HttpStatus.CREATED);
+    public ResponseEntity<Specie> saveSpecie(@RequestBody SpecieDto specieDto) {
+        return new ResponseEntity<Specie>(specieService.saveSpecie(specieDto), HttpStatus.CREATED);
     }
 
     @GetMapping("/all")
