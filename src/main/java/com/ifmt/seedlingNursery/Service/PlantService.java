@@ -10,7 +10,7 @@ import com.ifmt.seedlingNursery.dto.SpeciesPageRow;
 public interface PlantService {
   public Plant getPlant(Long id);
 
-  public Plant savePlant(PlantDto plantDto, Long specieId);
+  public List<Plant> savePlant(PlantDto plantDto, Long specieId, int number);
 
   public List<Plant> getAllPlants();
 

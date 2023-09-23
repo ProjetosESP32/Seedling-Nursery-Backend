@@ -42,21 +42,28 @@ public class PlantServiceImpl implements PlantService {
    * It will search for the specie and store it with the plant record.
    */
   @Override
-  public Plant savePlant(PlantDto plantDto, Long specieId) {
-    // building the Plant entity
+  public List<Plant> savePlant(PlantDto plantDto, Long specieId, int number) {
+
     Specie specie = SpecieServiceImpl.unwrapSpecie(specieRepository.findById(specieId), specieId);
-    Plant plant = new Plant();
-    BeanUtils.copyProperties(plantDto, plant);
-    plant.setSpecie(specie);
 
-    // saving plant
-    Plant plant2 = plantRepository.save(plant);
+    // saving the specified number of plants
+    List<Plant> plantsList = new ArrayList<>();
+    for (int i = 0; i < number; i++) {
+      // building the Plant entity
+      Plant plant = new Plant();
+      BeanUtils.copyProperties(plantDto, plant);
+      plant.setSpecie(specie);
 
-    // getting and saving image
-    PlantImages image = new PlantImages(plant2.getId(), plantDto.getImage());
-    plantImagesRepository.save(image);
+      // saving plant
+      Plant plant2 = plantRepository.save(plant);
 
-    return plant2;
+      // getting and saving image
+      PlantImages image = new PlantImages(plant2.getId(), plantDto.getImage());
+      plantImagesRepository.save(image);
+      plantsList.add(plant2);
+    }
+
+    return plantsList;
   }
 
   @Override

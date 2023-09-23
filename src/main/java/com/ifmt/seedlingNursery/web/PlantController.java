@@ -27,9 +27,10 @@ public class PlantController {
         return new ResponseEntity<>(plantService.getPlant(id), HttpStatus.OK);
     }
 
-    @PostMapping("/{specieId}")
-    public ResponseEntity<Plant> savePlant(@RequestBody PlantDto plantDto, @PathVariable Long specieId) {
-        return new ResponseEntity<>(plantService.savePlant(plantDto, specieId), HttpStatus.CREATED);
+    @PostMapping("/{specieId}/number/{number}")
+    public ResponseEntity<List<Plant>> savePlant(@RequestBody PlantDto plantDto, @PathVariable Long specieId,
+            @PathVariable int number) {
+        return new ResponseEntity<>(plantService.savePlant(plantDto, specieId, number), HttpStatus.CREATED);
     }
 
     @GetMapping("/all")
