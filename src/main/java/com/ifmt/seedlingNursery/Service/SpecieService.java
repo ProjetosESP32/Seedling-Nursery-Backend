@@ -13,4 +13,7 @@ public interface SpecieService {
   public List<Specie> getAllSpecies();
 
   public List<Specie> get7Species(int num);
+
+  // count
+  public int getSpeciesCount();
 }

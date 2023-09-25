@@ -65,6 +65,12 @@ public class SpecieServiceImpl implements SpecieService {
         return page;
     }
 
+    // count
+    @Override
+    public int getSpeciesCount() {
+        return specieRepository.getSpeciesCount();
+    }
+
     static Specie unwrapSpecie(Optional<Specie> entity, Long id) {
         if (entity.isPresent()) {
             return entity.get();

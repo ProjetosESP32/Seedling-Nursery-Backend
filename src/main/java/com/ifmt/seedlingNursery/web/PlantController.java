@@ -15,6 +15,7 @@ import com.ifmt.seedlingNursery.dto.SpeciesPageRow;
 
 import lombok.AllArgsConstructor;
 
+@CrossOrigin(exposedHeaders = { "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "table-size" })
 @AllArgsConstructor
 @RestController
 @RequestMapping("/plant")
