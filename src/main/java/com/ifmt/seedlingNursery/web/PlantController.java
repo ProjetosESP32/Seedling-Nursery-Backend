@@ -68,7 +68,7 @@ public class PlantController {
             @PathVariable int seed) {
 
         HttpHeaders header = new HttpHeaders();
-        header.add("tableSize",
+        header.add("table-size",
                 Integer.toString(plantService.getPlantsBySpecieCount(specieId, matrix, seedling, seed)));
         return new ResponseEntity<>(
                 plantService.getPlantsBySpeciePage(index, pageSize, specieId, matrix, seedling, seed), header,

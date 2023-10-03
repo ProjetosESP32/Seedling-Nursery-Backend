@@ -248,5 +248,4 @@ public class PlantServiceImpl implements PlantService {
     }
     throw new EntityNotFoundException(id, Plant.class);
   }
-
 }
