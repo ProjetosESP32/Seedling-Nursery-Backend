@@ -11,7 +11,7 @@ import com.ifmt.seedlingNursery.Model.Specie;
 public interface PlantRepository extends JpaRepository<Plant, Long> {
   List<Plant> findBySpecieId(Long specieId);
 
-  @Query("Select a FROM Plant a WHERE a.address LIKE %?1%")
+  @Query("Select a FROM Plant a WHERE UPPER(a.address) LIKE UPPER(concat('%', ?1, '%'))")
   List<Plant> findByAddressLike(String address);
 
   List<Plant> findByShelf(int shelf);
