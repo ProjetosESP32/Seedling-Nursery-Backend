@@ -20,8 +20,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "irrigation-time")
-public class irrigationTime {
+@Table(name = "irrigation_time")
+public class IrrigationTime {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
@@ -36,5 +36,4 @@ public class irrigationTime {
 
   @Column(name = "final-time")
   private LocalTime finalTime;
-
 }
