@@ -96,7 +96,7 @@ public class PlantController {
         int num = plantService.getPlantsByMatrixCount(matrixId);
 
         HttpHeaders header = new HttpHeaders();
-        header.add("tableSize", Integer.toString(num));
+        header.add("table-size", Integer.toString(num));
 
         return new ResponseEntity<>(row, header, HttpStatus.OK);
     }
