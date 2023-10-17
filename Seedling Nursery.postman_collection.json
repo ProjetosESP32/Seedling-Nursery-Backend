@@ -7,108 +7,6 @@
 	},
 	"item": [
 		{
-			"name": "Espécie",
-			"item": [
-				{
-					"name": "Salvar Espécie",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Espécie2\",\r\n    \"scienName\": \"jabuti\",\r\n    \"description\": \"he ho\",\r\n    \"image\": \"iVBORw0KGgoAAAANSUhEUgAAAcwAAAEsCAYAAABOn4MEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAw1SURBVHgB7d17i+NkA8bh+CoeUVQUBUFRVBQE/cvv/xUERVdFUVEUz4pHFF/uQiSbfdLes9POYb0uGFZ3Opk2WfLrkzxJ77px48Y/EwCw1/8mAOAgwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKgsml+eOPPyaA6+KeCS7AX3/9NX377bfTd999N/3222+7/1968MEHd1+PPfbY9PDDD0/33OOf5paPPvrott5sPPTQQ9Ozzz47AbfHXomT+/rrr6fPPvvslkgu/frrr7uvb775ZhfLJ554ws59w88//2x0DpdAMDmpzz//fPd1FgnrvrhyfSxHwy+88MJ03333TXBdCSYnkx3lViyXO87RaOmpp56auN6yXXPEAO4UgsnJjGKZ85M51JrzaUs//fTTbueaP3NIdv19tj366KPTc889N101X3311QR3EsHkZHJOcunee++dXn311eFjH3nkkd1XOD93NnmDcRUPdX7//fcT3EkEk5NZB3MO4iHtzn+eefvjjz/uZt7G3Xffvft6/PHHdyOvQ8vKc1zu2J9++undz0dGu/leJtn8/fffB5ed55NR1S+//PLv88mbhMz+zXKvw/m7+TXnTcvyNcyvO5OxDsl6+OKLL2554/Pll1/eMvt5nhm9b1k//PDD7nllW2U7zM9p/tn23xWcl2ByLWXnm53y1uSgRO6TTz6Znnnmmd3XluyEl4eOE7VE4dNPP939jnbZW5ObEo08PiE99FwuU4KU55/nujaHL+HKY/IatsKZw+p5zOgowegQbZazFcx923i5XrPNXnnlFROKODnB5GSyA1vuOOeRy3l3bJl52U4m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AkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAo/B8VLpz1NQrehwAAAABJRU5ErkJggg==\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/specie",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"specie"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Buscar Espécie por ID",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/specie/1",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"specie",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Buscar todas as Espécies",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/specie/all",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"specie",
-								"all"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Buscar Página de 7 Espécies",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/specie/page/1",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"specie",
-								"page",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Plantas",
 			"item": [
 				{
@@ -118,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"height\": 18.2,\r\n    \"shaftHeight\": 15,\r\n    \"cap\": 0.12,\r\n    \"cupFormation\": \"copudo\",\r\n    \"trunkFormation\": \"troncudo\",\r\n    \"occurrenceDensity\": 2,\r\n    \"city\": \"Cuiabá\",\r\n    \"soilType\": \"Pedregoso com cangas\",\r\n    \"vegetationType\": \"Serrado\",\r\n    \"pickupAddress\": \"Rua Aliperto, numero 9\",\r\n    \"determiningName\": \"O determinador\",\r\n    \"latitude\": \"6546516\",\r\n    \"longitude\": \"23465\",\r\n    \"altitude\": \"24\",\r\n    \"associatedSpecies\": \"no one\",\r\n    \"stage\": 2,\r\n    \"leafs\": 25,\r\n    \"plantingDate\": \"2022-12-25\",\r\n    \"address\": \"Rua ali ó, 3\",\r\n    \"shelf\": 2,\r\n    \"image\": \"iVBORw0KGgoAAAANSUhEUgAAAcwAAAEsCAYAAABOn4MEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAw1SURBVHgB7d17i+NkA8bh+CoeUVQUBUFRVBQE/cvv/xUERVdFUVEUz4pHFF/uQiSbfdLes9POYb0uGFZ3Opk2WfLrkzxJ77px48Y/EwCw1/8mAOAgwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKgsml+eOPPyaA6+KeCS7AX3/9NX377bfTd999N/3222+7/1968MEHd1+PPfbY9PDDD0/33OOf5paPPvrott5sPPTQQ9Ozzz47AbfHXomT+/rrr6fPPvvslkgu/frrr7uvb775ZhfLJ554ws59w88//2x0DpdAMDmpzz//fPd1FgnrvrhyfSxHwy+88MJ03333TXBdCSYnkx3lViyXO87RaOmpp56auN6yXXPEAO4UgsnJjGKZ85M51JrzaUs//fTTbueaP3NIdv19tj366KPTc889N101X3311QR3EsHkZHJOcunee++dXn311eFjH3nkkd1XOD93NnmDcRUPdX7//fcT3EkEk5NZB3MO4iHtzn+eefvjjz/uZt7G3Xffvft6/PHHdyOvQ8vKc1zu2J9++undz0dGu/leJtn8/fffB5ed55NR1S+//PLv88mbhMz+zXKvw/m7+TXnTcvyNcyvO5OxDsl6+OKLL2554/Pll1/eMvt5nhm9b1k//PDD7nllW2U7zM9p/tn23xWcl2ByLWXnm53y1uSgRO6TTz6Znnnmmd3XluyEl4eOE7VE4dNPP939jnbZW5ObEo08PiE99FwuU4KU55/nujaHL+HKY/IatsKZw+p5zOgowegQbZazFcx923i5XrPNXnnlFROKODnB5GSyA1vuOOeRy3l3bJl52U4m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AkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAo/B8VLpz1NQrehwAAAABJRU5ErkJggg==\",\r\n    \"observations\": \"Im observing you\"\r\n}",
+							"raw": "{\r\n    \"height\": 13.2,\r\n    \"shaftHeight\": 15,\r\n    \"cap\": 0.12,\r\n    \"cupFormation\": \"copudo\",\r\n    \"trunkFormation\": \"troncudo\",\r\n    \"occurrenceDensity\": 2,\r\n    \"city\": \"Cuiabá\",\r\n    \"soilType\": \"Pedregoso com cangas\",\r\n    \"vegetationType\": \"Serrado\",\r\n    \"pickupAddress\": \"Rua Aliperto, numero 9\",\r\n    \"determiningName\": \"O determinador\",\r\n    \"latitude\": \"6546516\",\r\n    \"longitude\": \"23465\",\r\n    \"altitude\": \"24\",\r\n    \"associatedSpecies\": \"no one\",\r\n    \"stage\": 0,\r\n    \"leafs\": 25,\r\n    \"plantingDate\": \"2022-12-25\",\r\n    \"address\": \"Rua ali ó, 3\",\r\n    \"shelf\": 0,\r\n    \"image\": \"iVBORw0KGgoAAAANSUhEUgAAAcwAAAEsCAYAAABOn4MEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAw1SURBVHgB7d17i+NkA8bh+CoeUVQUBUFRVBQE/cvv/xUERVdFUVEUz4pHFF/uQiSbfdLes9POYb0uGFZ3Opk2WfLrkzxJ77px48Y/EwCw1/8mAOAgwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKgsml+eOPPyaA6+KeCS7AX3/9NX377bfTd999N/3222+7/1968MEHd1+PPfbY9PDDD0/33OOf5paPPvrott5sPPTQQ9Ozzz47AbfHXomT+/rrr6fPPvvslkgu/frrr7uvb775ZhfLJ554ws59w88//2x0DpdAMDmpzz//fPd1FgnrvrhyfSxHwy+88MJ03333TXBdCSYnkx3lViyXO87RaOmpp56auN6yXXPEAO4UgsnJjGKZ85M51JrzaUs//fTTbueaP3NIdv19tj366KPTc889N101X3311QR3EsHkZHJOcunee++dXn311eFjH3nkkd1XOD93NnmDcRUPdX7//fcT3EkEk5NZB3MO4iHtzn+eefvjjz/uZt7G3Xffvft6/PHHdyOvQ8vKc1zu2J9++undz0dGu/leJtn8/fffB5ed55NR1S+//PLv88mbhMz+zXKvw/m7+TXnTcvyNcyvO5OxDsl6+OKLL2554/Pll1/eMvt5nhm9b1k//PDD7nllW2U7zM9p/tn23xWcl2ByLWXnm53y1uSgRO6TTz6Znnnmmd3XluyEl4eOE7VE4dNPP939jnbZW5ObEo08PiE99FwuU4KU55/nujaHL+HKY/IatsKZw+p5zOgowegQbZazFcx923i5XrPNXnnlFROKODnB5GSyA1vuOOeRy3l3bJl52U4m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AkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAo/B8VLpz1NQrehwAAAABJRU5ErkJggg==\",\r\n    \"observations\": \"Im observing you\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -126,14 +24,16 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/plant/1",
+							"raw": "localhost:8080/plant/9/number/8",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"plant",
-								"1"
+								"9",
+								"number",
+								"8"
 							]
 						}
 					},
@@ -145,14 +45,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/plant/2",
+							"raw": "localhost:8080/plant/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"plant",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -238,34 +138,12 @@
 					"response": []
 				},
 				{
-					"name": "Buscar página de plantas",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/plant/page/3/pageSize/5",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"plant",
-								"page",
-								"3",
-								"pageSize",
-								"5"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Buscar registros para PlantsBySpecie",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/plant/plants-per-specie-page/0/page-size/5/specie/1/0/0/1",
+							"raw": "localhost:8080/plant/plants-per-specie-page/0/page-size/20/specie/1/1/0/0",
 							"host": [
 								"localhost"
 							],
@@ -275,12 +153,12 @@
 								"plants-per-specie-page",
 								"0",
 								"page-size",
-								"5",
+								"20",
 								"specie",
 								"1",
+								"1",
 								"0",
-								"0",
-								"1"
+								"0"
 							]
 						}
 					},
@@ -335,7 +213,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/plant/plants-by-matrix-page/0/page-size/2/matrix/1",
+							"raw": "localhost:8080/plant/plants-by-matrix-page/0/page-size/5/matrix/55",
 							"host": [
 								"localhost"
 							],
@@ -345,9 +223,9 @@
 								"plants-by-matrix-page",
 								"0",
 								"page-size",
-								"2",
+								"5",
 								"matrix",
-								"1"
+								"55"
 							]
 						}
 					},
@@ -359,7 +237,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/plant/plants-by-address-page/1/page-size/5/address/ali",
+							"raw": "localhost:8080/plant/plants-by-address-page/1/page-size/5/address/ALI",
 							"host": [
 								"localhost"
 							],
@@ -371,7 +249,7 @@
 								"page-size",
 								"5",
 								"address",
-								"ali"
+								"ALI"
 							]
 						}
 					},
@@ -392,6 +270,156 @@
 								"plant",
 								"count",
 								"byShelf"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Espécie",
+			"item": [
+				{
+					"name": "Salvar Espécie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Espécie8\",\r\n    \"scienName\": \"jabuti\",\r\n    \"description\": \"Esta espécie de e ávore é uma espécie que existe no planeta Terra\",\r\n    \"image\": \"iVBORw0KGgoAAAANSUhEUgAAAcwAAAEsCAYAAABOn4MEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAw1SURBVHgB7d17i+NkA8bh+CoeUVQUBUFRVBQE/cvv/xUERVdFUVEUz4pHFF/uQiSbfdLes9POYb0uGFZ3Opk2WfLrkzxJ77px48Y/EwCw1/8mAOAgwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKgsml+eOPPyaA6+KeCS7AX3/9NX377bfTd999N/3222+7/1968MEHd1+PPfbY9PDDD0/33OOf5paPPvrott5sPPTQQ9Ozzz47AbfHXomT+/rrr6fPPvvslkgu/frrr7uvb775ZhfLJ554ws59w88//2x0DpdAMDmpzz//fPd1FgnrvrhyfSxHwy+88MJ03333TXBdCSYnkx3lViyXO87RaOmpp56auN6yXXPEAO4UgsnJjGKZ85M51JrzaUs//fTTbueaP3NIdv19tj366KPTc889N101X3311QR3EsHkZHJOcunee++dXn311eFjH3nkkd1XOD93NnmDcRUPdX7//fcT3EkEk5NZB3MO4iHtzn+eefvjjz/uZt7G3Xffvft6/PHHdyOvQ8vKc1zu2J9++undz0dGu/leJtn8/fffB5ed55NR1S+//PLv88mbhMz+zXKvw/m7+TXnTcvyNcyvO5OxDsl6+OKLL2554/Pll1/eMvt5nhm9b1k//PDD7nllW2U7zM9p/tn23xWcl2ByLWXnm53y1uSgRO6TTz6Znnnmmd3XluyEl4eOE7VE4dNPP939jnbZW5ObEo08PiE99FwuU4KU55/nujaHL+HKY/IatsKZw+p5zOgowegQbZazFcx923i5XrPNXnnlFROKODnB5GSyA1vuOOeRy3l3bJl52U4m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AkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAoCCYAFAQTAAqCCQAFwQSAgmACQEEwAaAgmABQEEwAKAgmABQEEwAKggkABcEEgIJgAkBBMAGgIJgAUBBMACgIJgAUBBMACoIJAAXBBICCYAJAQTABoCCYAFAQTAAo/B8VLpz1NQrehwAAAABJRU5ErkJggg==\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/specie",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"specie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Espécie por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/specie/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"specie",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar todas as Espécies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/specie/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"specie",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Página de 7 Espécies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/specie/page/0",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"specie",
+								"page",
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Imagens de Plantas",
+			"item": [
+				{
+					"name": "Buscar Imagem",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/plant-images/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"plant-images",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Imagens de Espécies",
+			"item": [
+				{
+					"name": "Buscar Imagem",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/specie-images/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"specie-images",
+								"1"
 							]
 						}
 					},
@@ -518,7 +546,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idLocation\": 2,\r\n    \"idMicrocontroller\": 1,\r\n    \"type\": \"umidade\",\r\n    \"mesure\": \"graus\",\r\n    \"observations\": \"esse sensor fica no começo da bancada. Ele deve estar sempre na sombra.\"\r\n}",
+							"raw": "{\r\n    \"idLocation\": 2,\r\n    \"idMicrocontroller\": 1,\r\n    \"type\": \"distância\",\r\n    \"mesure\": \"m\",\r\n    \"observations\": \"esse sensor fica no começo da bancada. Ele deve estar sempre na sombra.\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -591,7 +619,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"value\": 42\r\n}",
+							"raw": "{\r\n    \"value\": 40.23\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -599,7 +627,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/sensor-record/2",
+							"raw": "http://localhost:8080/sensor-record/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -607,7 +635,7 @@
 							"port": "8080",
 							"path": [
 								"sensor-record",
-								"2"
+								"3"
 							]
 						}
 					},
@@ -619,7 +647,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/sensor-record/3",
+							"raw": "http://localhost:8080/sensor-record/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -627,7 +655,7 @@
 							"port": "8080",
 							"path": [
 								"sensor-record",
-								"3"
+								"6"
 							]
 						}
 					},
@@ -696,7 +724,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"time1\": \"2023-09-18T18:46:43.6529657\",\r\n    \"time2\": \"2023-09-18T18:48:05.0810655\"\r\n}",
+							"raw": "{\r\n    \"time1\": \"2023-10-10T18:46:43.6529657\",\r\n    \"time2\": \"2023-11-18T18:48:05.0810655\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -713,6 +741,99 @@
 							"path": [
 								"sensor-record",
 								"period"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tempo de Irrigação",
+			"item": [
+				{
+					"name": "Salvar tempo de irrigação",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"initialTime\": \"23:00:00\",\r\n    \"finalTime\": \"19:30:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/irrigation-time/valve/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"irrigation-time",
+								"valve",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar tempo de irrigação",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/irrigation-time/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"irrigation-time",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar tempos de irrigação por válvula",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/irrigation-time/valve/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"irrigation-time",
+								"valve",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Estado da Válvula",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/irrigation-time/is-on/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"irrigation-time",
+								"is-on",
+								"1"
 							]
 						}
 					},
