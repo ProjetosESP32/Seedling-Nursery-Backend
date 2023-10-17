@@ -38,22 +38,23 @@ public class IrrigationTimeServiceImpl implements IrrigationTimeService {
   // needs to be implemented...
   public Boolean isValveOn(Long valveId) {
     List<IrrigationTime> times = irrigationTimeRepository.findByValveId(valveId);
-    Boolean on = false;
     for (IrrigationTime time : times) {
       // if irrigation time does't pass through midnight
       if (time.getInitialTime().compareTo(time.getFinalTime()) < 0) {
         if (time.getInitialTime().compareTo(LocalTime.now()) < 0
             && time.getFinalTime().compareTo(LocalTime.now()) > 0)
-          on = true;
+          return true;
 
         // if the irrigation time passes through midnight
       } else {
         if (time.getInitialTime().compareTo(LocalTime.now()) < 0 || time.getFinalTime().compareTo(LocalTime.now()) > 0)
-          on = true;
+          return true;
       }
 
     }
-    return on;
+
+    // if it does't match any of the above condition, the valve must be off
+    return false;
   }
 
   static IrrigationTime unwrapTime(Optional<IrrigationTime> entity, Long id) {
