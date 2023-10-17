@@ -1,5 +1,6 @@
 package com.ifmt.seedlingNursery.Service;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +37,23 @@ public class IrrigationTimeServiceImpl implements IrrigationTimeService {
 
   // needs to be implemented...
   public Boolean isValveOn(Long valveId) {
-    return true;
+    List<IrrigationTime> times = irrigationTimeRepository.findByValveId(valveId);
+    Boolean on = false;
+    for (IrrigationTime time : times) {
+      // if irrigation time does't pass through midnight
+      if (time.getInitialTime().compareTo(time.getFinalTime()) < 0) {
+        if (time.getInitialTime().compareTo(LocalTime.now()) < 0
+            && time.getFinalTime().compareTo(LocalTime.now()) > 0)
+          on = true;
+
+        // if the irrigation time passes through midnight
+      } else {
+        if (time.getInitialTime().compareTo(LocalTime.now()) < 0 || time.getFinalTime().compareTo(LocalTime.now()) > 0)
+          on = true;
+      }
+
+    }
+    return on;
   }
 
   static IrrigationTime unwrapTime(Optional<IrrigationTime> entity, Long id) {

@@ -2,6 +2,7 @@ package com.ifmt.seedlingNursery.web;
 
 import java.util.List;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,5 +38,10 @@ public class IrrigationTimeController {
   @GetMapping("/valve/{valveId}")
   public ResponseEntity<List<IrrigationTime>> getTimeByValve(@PathVariable Long valveId) {
     return new ResponseEntity<List<IrrigationTime>>(irrigationTimeService.getTimesByValve(valveId), HttpStatus.OK);
+  }
+
+  @GetMapping("/is-on/{valveId}")
+  public ResponseEntity<Boolean> isValveOn(@PathVariable Long valveId) {
+    return new ResponseEntity<Boolean>(irrigationTimeService.isValveOn(valveId), HttpStatus.OK);
   }
 }
