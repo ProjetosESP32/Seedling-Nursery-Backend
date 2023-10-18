@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 @Service
 public class ValveServiceImpl implements ValveService {
   ValveRepository valveRepository;
+  IrrigationTimeService irrigationTimeService;
 
   @Override
   public Valve saveValve(Valve valve) {
@@ -44,7 +45,7 @@ public class ValveServiceImpl implements ValveService {
     List<Valve> valves = valveRepository.findAll();
     List<ValvesStateDto> states = new ArrayList<>();
     for (Valve valve : valves) {
-      states.add(new ValvesStateDto(valve.getId(), valve.getCurrentState()));
+      states.add(new ValvesStateDto(valve.getId(), irrigationTimeService.isValveOn(valve.getId())));
     }
     return states;
   }

@@ -21,24 +21,28 @@ public class IrrigationTimeServiceImpl implements IrrigationTimeService {
   IrrigationTimeRepository irrigationTimeRepository;
   ValveRepository valveRepository;
 
+  @Override
   public IrrigationTime getTime(Long id) {
     return unwrapTime(irrigationTimeRepository.findById(id), id);
   }
 
+  @Override
   public IrrigationTime saveTime(IrrigationTime irrigationTime, Long valveId) {
     Valve valve = ValveServiceImpl.unwrapValve(valveRepository.findById(valveId), valveId);
     irrigationTime.setValve(valve);
     return irrigationTimeRepository.save(irrigationTime);
   }
 
+  @Override
   public List<IrrigationTime> getTimesByValve(Long valveId) {
     return irrigationTimeRepository.findByValveId(valveId);
   }
 
-  // needs to be implemented...
+  @Override
   public Boolean isValveOn(Long valveId) {
     List<IrrigationTime> times = irrigationTimeRepository.findByValveId(valveId);
     for (IrrigationTime time : times) {
+
       // if irrigation time does't pass through midnight
       if (time.getInitialTime().compareTo(time.getFinalTime()) < 0) {
         if (time.getInitialTime().compareTo(LocalTime.now()) < 0
