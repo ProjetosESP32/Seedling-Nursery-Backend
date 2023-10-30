@@ -32,6 +32,13 @@ public class ValveServiceImpl implements ValveService {
 
   @Override
   public List<Valve> getAllValves() {
+    List<Valve> valves = valveRepository.findAll();
+
+    for (int i = 0; i < valves.size(); i++) {
+      System.out.println(valves.get(i).getId());
+      valves.get(i).setCurrentState(irrigationTimeService.isValveOn(valves.get(i).getId()));
+    }
+
     return valveRepository.findAll();
   };
 
