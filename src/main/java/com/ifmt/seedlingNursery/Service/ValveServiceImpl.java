@@ -27,7 +27,9 @@ public class ValveServiceImpl implements ValveService {
 
   @Override
   public Valve getValve(Long id) {
-    return unwrapValve(valveRepository.findById(id), id);
+    Valve valve = unwrapValve(valveRepository.findById(id), id);
+    valve.setCurrentState(irrigationTimeService.isValveOn(valve.getId()));
+    return valve;
   }
 
   @Override
