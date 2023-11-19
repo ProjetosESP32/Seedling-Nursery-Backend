@@ -59,6 +59,11 @@ public class ValveServiceImpl implements ValveService {
     return states;
   }
 
+  @Override
+  public void deleteValve(Long id) {
+    valveRepository.deleteById(id);
+  }
+
   static Valve unwrapValve(Optional<Valve> entity, Long id) {
     if (entity.isPresent()) {
       return entity.get();

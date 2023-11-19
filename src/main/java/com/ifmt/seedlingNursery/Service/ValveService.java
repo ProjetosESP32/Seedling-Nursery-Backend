@@ -16,4 +16,6 @@ public interface ValveService {
 
   public List<ValvesStateDto> getValvesStates();
 
+  public void deleteValve(Long id);
+
 }
