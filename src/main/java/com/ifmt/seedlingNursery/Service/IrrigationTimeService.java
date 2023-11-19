@@ -12,4 +12,6 @@ public interface IrrigationTimeService {
   public List<IrrigationTime> getTimesByValve(Long valveId);
 
   public Boolean isValveOn(Long valveId);
+
+  public void deleteByiD(Long id);
 }

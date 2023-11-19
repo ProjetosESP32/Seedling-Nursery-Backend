@@ -61,6 +61,11 @@ public class IrrigationTimeServiceImpl implements IrrigationTimeService {
     return false;
   }
 
+  @Override
+  public void deleteByiD(Long id) {
+    irrigationTimeRepository.deleteById(id);
+  }
+
   static IrrigationTime unwrapTime(Optional<IrrigationTime> entity, Long id) {
     if (entity.isPresent()) {
       return entity.get();
