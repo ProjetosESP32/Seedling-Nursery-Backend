@@ -31,6 +31,11 @@ public class SensorServiceImpl implements SensorService {
     return sensorRepository.findAll();
   }
 
+  @Override
+  public void deleteSensor(Long id) {
+    sensorRepository.deleteById(id);
+  }
+
   static Sensor unwrapSensor(Optional<Sensor> entity, Long id) {
     if (entity.isPresent()) {
       return entity.get();

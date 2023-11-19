@@ -13,4 +13,6 @@ public interface SensorService {
   public Sensor getSensor(Long id);
 
   public List<Sensor> getAllSensors();
+
+  public void deleteSensor(Long id);
 }
