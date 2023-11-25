@@ -2,6 +2,7 @@ package com.ifmt.seedlingNursery.Model;
 
 import java.time.LocalTime;
 
+import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,9 +32,9 @@ public class IrrigationTime {
   @JoinColumn(name = "valve", referencedColumnName = "id")
   private Valve valve;
 
-  @Column(name = "initial-time")
+  @Column(name = "initial-time", nullable = false)
   private LocalTime initialTime;
 
-  @Column(name = "final-time")
+  @Column(name = "final-time", nullable = false)
   private LocalTime finalTime;
 }
