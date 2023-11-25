@@ -7,16 +7,21 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.ifmt.seedlingNursery.Model.Valve;
+import com.ifmt.seedlingNursery.Repository.IrrigationTimeRepository;
 import com.ifmt.seedlingNursery.Repository.ValveRepository;
 import com.ifmt.seedlingNursery.dto.ValvesStateDto;
 import com.ifmt.seedlingNursery.exception.EntityNotFoundException;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Service
 public class ValveServiceImpl implements ValveService {
+
+  // beans
   ValveRepository valveRepository;
+  IrrigationTimeRepository irrigationTimeRepository;
   IrrigationTimeService irrigationTimeService;
 
   @Override
@@ -60,7 +65,9 @@ public class ValveServiceImpl implements ValveService {
   }
 
   @Override
+  @Transactional
   public void deleteValve(Long id) {
+    irrigationTimeRepository.deleteByValve(unwrapValve(valveRepository.findById(id), id));
     valveRepository.deleteById(id);
   }
 
