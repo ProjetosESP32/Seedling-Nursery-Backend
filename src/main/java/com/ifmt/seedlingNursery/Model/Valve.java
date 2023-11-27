@@ -26,7 +26,7 @@ public class Valve {
   @Column(name = "shelf")
   private int shelf;
 
-  @Column(name = "observations")
+  @Column(name = "observations", length = 20000)
   private String observations;
 
   @Column(name = "current-state")
