@@ -40,7 +40,7 @@ public class SensorRecordController {
     return new ResponseEntity<List<SensorRecord>>(sensorRecordService.getAllSensorRecord(), HttpStatus.OK);
   }
 
-  @GetMapping("/sensor/{sensorId}")
+  @PostMapping("/sensor/{sensorId}")
   public ResponseEntity<List<SensorRecord>> getAllBySensor(@PathVariable Long sensorId,
       @RequestBody TimePeriodDto times) {
     return new ResponseEntity<List<SensorRecord>>(

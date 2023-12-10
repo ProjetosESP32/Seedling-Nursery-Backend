@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface SensorRecordRepository extends JpaRepository<SensorRecord, Long> {
-  @Query("SELECT a FROM SensorRecord a WHERE sensor=:sensor AND a.timeStamp BETWEEN :time1 AND :time2")
+  @Query("SELECT a FROM SensorRecord a WHERE sensor=:sensor AND a.timeStamp BETWEEN :time1 AND :time2 ORDER BY a.timeStamp DESC")
   List<SensorRecord> findBySensor(Sensor sensor, LocalDateTime time1, LocalDateTime time2);
 
   @Query("SELECT a FROM SensorRecord a WHERE a.timeStamp BETWEEN :time1 AND :time2")
