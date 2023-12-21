@@ -1,11 +1,13 @@
 package com.ifmt.seedlingNursery.Service;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.ifmt.seedlingNursery.Model.IrrigationTime;
 import com.ifmt.seedlingNursery.Model.Valve;
 import com.ifmt.seedlingNursery.Repository.IrrigationTimeRepository;
 import com.ifmt.seedlingNursery.Repository.ValveRepository;
@@ -59,7 +61,13 @@ public class ValveServiceImpl implements ValveService {
     List<Valve> valves = valveRepository.findAll();
     List<ValvesStateDto> states = new ArrayList<>();
     for (Valve valve : valves) {
-      states.add(new ValvesStateDto(valve.getId(), irrigationTimeService.isValveOn(valve.getId())));
+      List<IrrigationTime> irrigationTimeList = irrigationTimeService.getTimesByValve(valve.getId());
+      List<LocalTime> localTimeList = new ArrayList<>();
+      for (IrrigationTime irrigationTime : irrigationTimeList) {
+        localTimeList.add(irrigationTime.getInitialTime());
+      }
+
+      states.add(new ValvesStateDto(valve.getId(), irrigationTimeService.isValveOn(valve.getId()), localTimeList));
     }
     return states;
   }
