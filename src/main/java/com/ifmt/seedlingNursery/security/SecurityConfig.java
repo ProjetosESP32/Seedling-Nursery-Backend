@@ -14,8 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import lombok.AllArgsConstructor;
 
-import org.springframework.security.config.Customizer;
-
 @Configuration
 @AllArgsConstructor
 public class SecurityConfig {
@@ -24,9 +22,11 @@ public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    // it seems that the upper rulles have preference.
     http
-        .csrf().disable() // isables protection against csrf attacks
+        .csrf().disable() // disables protection against csrf attacks
         .authorizeRequests()
+        .requestMatchers("/user/register").hasRole("ADMIN")
         .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
         .requestMatchers(HttpMethod.POST).hasAnyRole("ADMIN", "USER")
         .anyRequest().authenticated()
