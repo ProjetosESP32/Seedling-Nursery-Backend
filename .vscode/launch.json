@@ -9,6 +9,16 @@
       "projectName": "gerenciamentoMudas",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-SeedlingNurseryApplication<gerenciamentoMudas>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.ifmt.seedlingNursery.SeedlingNurseryApplication",
+      "projectName": "gerenciamentoMudas",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }

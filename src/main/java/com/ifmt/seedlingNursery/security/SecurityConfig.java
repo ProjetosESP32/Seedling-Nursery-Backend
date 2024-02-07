@@ -12,6 +12,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.ifmt.seedlingNursery.security.filter.AuthenticationFilter;
+import com.ifmt.seedlingNursery.security.filter.ExceptionHandlerFilter;
+import com.ifmt.seedlingNursery.security.manager.CustomAuthenticationManager;
+
 import lombok.AllArgsConstructor;
 
 @Configuration
@@ -19,9 +23,13 @@ import lombok.AllArgsConstructor;
 public class SecurityConfig {
 
   private BCryptPasswordEncoder passwordEncoder;
+  CustomAuthenticationManager customAuthenticationManager;
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+    AuthenticationFilter authenticationFilter = new AuthenticationFilter(customAuthenticationManager);
+    authenticationFilter.setFilterProcessesUrl("/authenticate");
     // it seems that the upper rulles have preference.
     http
         .csrf().disable() // disables protection against csrf attacks
@@ -33,9 +41,10 @@ public class SecurityConfig {
         .and()
         .httpBasic()
         .and()
+        .addFilterBefore(new ExceptionHandlerFilter(), AuthenticationFilter.class)
+        .addFilter(authenticationFilter)
         // sets to not create session for logged user.
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
     return http.build();
   }
 
