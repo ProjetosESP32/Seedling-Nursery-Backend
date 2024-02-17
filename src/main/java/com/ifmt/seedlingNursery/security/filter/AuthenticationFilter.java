@@ -1,15 +1,19 @@
 package com.ifmt.seedlingNursery.security.filter;
 
 import java.io.IOException;
+import java.util.Date;
 
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.ifmt.seedlingNursery.Model.User;
+import com.ifmt.seedlingNursery.security.SecretConsts;
 import com.ifmt.seedlingNursery.security.manager.CustomAuthenticationManager;
 
 import jakarta.servlet.FilterChain;
@@ -43,12 +47,20 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
   protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
       AuthenticationException failed) throws IOException, ServletException {
     System.out.println("Autenticação falhou.");
+    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    response.getWriter().write(failed.getMessage());
+    response.getWriter().flush();
   }
 
   @Override
   protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
       Authentication authResult) throws IOException, ServletException {
     System.out.println("Autenticado com sucesso.");
+    String token = JWT.create()
+        .withSubject(authResult.getName())
+        .withExpiresAt(new Date(System.currentTimeMillis() + 2700000))
+        .sign(Algorithm.HMAC512(SecretConsts.SECRET_KEY));
+    response.addHeader("Authorization", "Bearer " + token);
   }
 
 }
