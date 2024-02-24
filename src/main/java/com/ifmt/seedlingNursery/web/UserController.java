@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ifmt.seedlingNursery.Model.User;
+import com.ifmt.seedlingNursery.Model.Users;
 import com.ifmt.seedlingNursery.Service.UserService;
 
 import jakarta.validation.Valid;
@@ -20,7 +20,7 @@ public class UserController {
   UserService userService;
 
   @PostMapping("/register")
-  public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
+  public ResponseEntity<Users> createUser(@Valid @RequestBody Users user) {
     userService.saveUser(user);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }

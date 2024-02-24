@@ -1,12 +1,12 @@
 package com.ifmt.seedlingNursery.Service;
 
-import com.ifmt.seedlingNursery.Model.User;
+import com.ifmt.seedlingNursery.Model.Users;
 
 public interface UserService {
-  User getUser(Long id);
+  Users getUser(Long id);
 
-  User getUser(String username);
+  Users getUser(String username);
 
-  User saveUser(User user);
+  Users saveUser(Users user);
 
 }

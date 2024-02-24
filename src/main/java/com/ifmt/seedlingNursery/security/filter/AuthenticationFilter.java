@@ -12,7 +12,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.ifmt.seedlingNursery.Model.User;
+import com.ifmt.seedlingNursery.Model.Users;
 import com.ifmt.seedlingNursery.security.SecretConsts;
 import com.ifmt.seedlingNursery.security.manager.CustomAuthenticationManager;
 
@@ -33,7 +33,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
       throws AuthenticationException {
 
     try {
-      User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
+      Users user = new ObjectMapper().readValue(request.getInputStream(), Users.class);
       Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
       System.out.println("\nUser: " + user.getUsername());
       System.out.println("\nPassword: " + user.getPassword());
