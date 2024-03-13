@@ -13,6 +13,8 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.ifmt.seedlingNursery.security.filter.AuthenticationFilter;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 import com.ifmt.seedlingNursery.security.filter.ExceptionHandlerFilter;
 import com.ifmt.seedlingNursery.security.filter.JWTAuthorizationFilter;
 import com.ifmt.seedlingNursery.security.manager.CustomAuthenticationManager;
@@ -26,6 +28,7 @@ public class SecurityConfig {
   private BCryptPasswordEncoder passwordEncoder;
   CustomAuthenticationManager customAuthenticationManager;
 
+  @SuppressWarnings("deprecation")
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -33,37 +36,36 @@ public class SecurityConfig {
     authenticationFilter.setFilterProcessesUrl("/authenticate");
     // it seems that the upper rulles have preference.
     http
-        .csrf().disable() // disables protection against csrf attacks
-        .authorizeRequests()
-        .requestMatchers("/user/register").hasRole("ADMIN")
-        .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-        .requestMatchers(HttpMethod.POST).hasAnyRole("ADMIN", "USER")
-        .anyRequest().authenticated()
-        .and()
-        .httpBasic()
-        .and()
+        .csrf(csrf -> csrf.disable()) // disables protection against csrf attacks
+        .authorizeRequests(requests -> requests
+            .requestMatchers("/user/register/*").permitAll()
+            // .requestMatchers("/user/register").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
+            .requestMatchers(HttpMethod.POST).hasAnyRole("ADMIN", "USER")
+            .anyRequest().authenticated())
+        .httpBasic(withDefaults())
         .addFilterBefore(new ExceptionHandlerFilter(), AuthenticationFilter.class)
         .addFilter(authenticationFilter)
         .addFilterAfter(new JWTAuthorizationFilter(), AuthenticationFilter.class)
         // sets to not create session for logged user.
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
     return http.build();
   }
 
-  @Bean
-  public UserDetailsService users() {
-    UserDetails admin = User.builder()
-        .username("admin")
-        .password(passwordEncoder.encode(SecretConsts.ADMIN_PASS))
-        .roles("ADMIN")
-        .build();
+  // @Bean
+  // public UserDetailsService users() {
+  // UserDetails admin = User.builder()
+  // .username("admin")
+  // .password(passwordEncoder.encode(SecretConsts.ADMIN_PASS))
+  // .roles("ADMIN")
+  // .build();
 
-    UserDetails user1 = User.builder()
-        .username("user")
-        .password(passwordEncoder.encode(SecretConsts.USER_PASS))
-        .roles("USER")
-        .build();
+  // UserDetails user1 = User.builder()
+  // .username("user")
+  // .password(passwordEncoder.encode(SecretConsts.USER_PASS))
+  // .roles("USER")
+  // .build();
 
-    return new InMemoryUserDetailsManager(admin, user1);
-  }
+  // return new InMemoryUserDetailsManager(admin, user1);
+  // }
 }

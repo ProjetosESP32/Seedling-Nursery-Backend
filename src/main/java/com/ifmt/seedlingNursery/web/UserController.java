@@ -1,14 +1,19 @@
 package com.ifmt.seedlingNursery.web;
 
+import java.util.Arrays;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ifmt.seedlingNursery.Model.Roles;
 import com.ifmt.seedlingNursery.Model.Users;
-import com.ifmt.seedlingNursery.Service.UserService;
+import com.ifmt.seedlingNursery.Service.RolesServiceImpl;
+import com.ifmt.seedlingNursery.security.UserServiceImpl;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -17,10 +22,13 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-  UserService userService;
+  UserServiceImpl userService;
+  RolesServiceImpl rolesService;
 
-  @PostMapping("/register")
-  public ResponseEntity<Users> createUser(@Valid @RequestBody Users user) {
+  @PostMapping("/register/{roleName}")
+  public ResponseEntity<Users> createUser(@Valid @RequestBody Users user, @PathVariable String roleName) {
+    Roles role = rolesService.getRoleByName(roleName);
+    user.setRoles(Arrays.asList(role));
     userService.saveUser(user);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
