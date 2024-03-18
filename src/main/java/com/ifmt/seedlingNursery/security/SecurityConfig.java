@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+//import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.ifmt.seedlingNursery.security.filter.AuthenticationFilter;
@@ -27,6 +27,7 @@ public class SecurityConfig {
 
   private BCryptPasswordEncoder passwordEncoder;
   CustomAuthenticationManager customAuthenticationManager;
+  JWTAuthorizationFilter jwtAuthorizationFilter;
 
   @SuppressWarnings("deprecation")
   @Bean
@@ -38,15 +39,15 @@ public class SecurityConfig {
     http
         .csrf(csrf -> csrf.disable()) // disables protection against csrf attacks
         .authorizeRequests(requests -> requests
-            .requestMatchers("/user/register/*").permitAll()
-            // .requestMatchers("/user/register").hasRole("ADMIN")
-            .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-            .requestMatchers(HttpMethod.POST).hasAnyRole("ADMIN", "USER")
+            // .requestMatchers("/user/register/*").permitAll()
+            .requestMatchers("/user/register/**").hasAuthority("ADMIN")
+            .requestMatchers(HttpMethod.DELETE).hasAuthority("ADMIN")
+            .requestMatchers(HttpMethod.POST).hasAnyAuthority("ADMIN", "USER")
             .anyRequest().authenticated())
-        .httpBasic(withDefaults())
+        // .httpBasic(withDefaults())
         .addFilterBefore(new ExceptionHandlerFilter(), AuthenticationFilter.class)
         .addFilter(authenticationFilter)
-        .addFilterAfter(new JWTAuthorizationFilter(), AuthenticationFilter.class)
+        .addFilterAfter(jwtAuthorizationFilter, AuthenticationFilter.class)
         // sets to not create session for logged user.
         .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
     return http.build();

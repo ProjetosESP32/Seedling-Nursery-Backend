@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.ifmt.seedlingNursery.Model.Users;
 import com.ifmt.seedlingNursery.security.UserServiceImpl;
 
 import lombok.AllArgsConstructor;
@@ -27,6 +26,8 @@ public class CustomAuthenticationManager implements AuthenticationManager {
     if (!bCryptPasswordEncoder.matches(authentication.getCredentials().toString(), user.getPassword())) {
       throw new BadCredentialsException("Senha Incorreta");
     }
+
+    System.out.println("getAuth: " + user.getAuthorities().toString());
 
     return new UsernamePasswordAuthenticationToken(authentication.getName(), user.getPassword(), user.getAuthorities());
   }

@@ -2,16 +2,6 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Spring Boot-GerenciamentoMudasApplication<gerenciamentoMudas>",
-      "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "mainClass": "com.ifmt.seedlingNursery.GerenciamentoMudasApplication",
-      "projectName": "gerenciamentoMudas",
-      "args": "",
-      "envFile": "${workspaceFolder}/.env"
-    },
-    {
-      "type": "java",
       "name": "Spring Boot-SeedlingNurseryApplication<gerenciamentoMudas>",
       "request": "launch",
       "cwd": "${workspaceFolder}",

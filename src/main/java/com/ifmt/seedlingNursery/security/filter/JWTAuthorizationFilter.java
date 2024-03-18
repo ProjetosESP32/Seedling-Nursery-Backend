@@ -1,23 +1,37 @@
 package com.ifmt.seedlingNursery.security.filter;
 
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+//import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.ifmt.seedlingNursery.security.SecretConsts;
+import com.ifmt.seedlingNursery.security.UserServiceImpl;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.AllArgsConstructor;
 
+@SuppressWarnings("null")
+@Component
+@AllArgsConstructor
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
+
+  private UserServiceImpl userServiceImpl;
+
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
       throws ServletException, IOException {
@@ -31,7 +45,17 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     String token = headerAuth.replace("Bearer ", "");
     String user = JWT.require(Algorithm.HMAC512(SecretConsts.SECRET_KEY)).build().verify(token).getSubject();
 
-    Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, Arrays.asList());
+    UserDetails userDetails = userServiceImpl.loadUserByUsername(user);
+    System.out.println("Authority: " + userDetails.getAuthorities().toString());
+
+    SimpleGrantedAuthority authority = new SimpleGrantedAuthority("USER");
+    List<SimpleGrantedAuthority> auths = new ArrayList<SimpleGrantedAuthority>();
+    auths.add(authority);
+
+    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user,
+        SecurityContextHolder.getContext().getAuthentication(),
+        userDetails.getAuthorities());
+    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
     SecurityContextHolder.getContext().setAuthentication(authentication);
     filterChain.doFilter(request, response);
   }
