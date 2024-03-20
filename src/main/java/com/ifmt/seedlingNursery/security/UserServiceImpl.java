@@ -1,5 +1,6 @@
 package com.ifmt.seedlingNursery.security;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -15,17 +16,33 @@ import org.springframework.stereotype.Service;
 
 import com.ifmt.seedlingNursery.Model.Roles;
 import com.ifmt.seedlingNursery.Model.Users;
+import com.ifmt.seedlingNursery.Repository.RolesRepository;
 import com.ifmt.seedlingNursery.Repository.UserRepository;
 import com.ifmt.seedlingNursery.exception.EntityNotFoundException;
 
 import lombok.AllArgsConstructor;
 
+@SuppressWarnings("null")
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserDetailsService {
 
   UserRepository userRepository;
+  RolesRepository rolesRepository;
   BCryptPasswordEncoder bCryptPasswordEncoder;
+
+  // Creates admin credencials if its not already defined in db.
+  /*
+   * @PostConstruct
+   * private void postConstruct() {
+   * if (!userRepository.findByUsername("Admin").isPresent()) {
+   * Roles adminRole = rolesRepository.findByName("ADMIN").get();
+   * Users user = new Users(1L, "Admin", "OitoDois80_IFMT",
+   * Arrays.asList(adminRole));
+   * this.saveUser(user);
+   * }
+   * }
+   */
 
   public Users getUser(Long id) {
     Optional<Users> user = userRepository.findById(id);

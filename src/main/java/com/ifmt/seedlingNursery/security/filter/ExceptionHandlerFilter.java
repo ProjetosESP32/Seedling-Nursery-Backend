@@ -24,8 +24,9 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
       response.getWriter().write(e.getMessage());
       response.getWriter().flush();
     } catch (JWTVerificationException e) {
-      response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-      response.getWriter().write("Token inválido.");
+      response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+      response.addHeader("Content-Type", "Application");
+      response.getWriter().write("Token invalido.");
       response.getWriter().flush();
     } catch (RuntimeException e) {
       response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
