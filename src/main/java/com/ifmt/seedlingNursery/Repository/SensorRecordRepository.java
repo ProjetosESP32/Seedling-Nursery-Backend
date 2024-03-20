@@ -16,6 +16,8 @@ public interface SensorRecordRepository extends JpaRepository<SensorRecord, Long
   @Query("SELECT a FROM SensorRecord a WHERE a.timeStamp BETWEEN :time1 AND :time2")
   List<SensorRecord> findREcordBetweenTimes(LocalDateTime time1, LocalDateTime time2);
 
+  // List<SensorRecord> saveAll(List<SensorRecord> records);
+
   /* @Query("DELETE FROM SensorRecord a WHERE a.sensor=:sensor") */
   Long deleteBySensor(Sensor sensor);
 }

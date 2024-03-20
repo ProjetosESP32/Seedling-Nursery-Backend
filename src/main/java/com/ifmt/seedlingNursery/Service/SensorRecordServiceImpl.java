@@ -49,6 +49,11 @@ public class SensorRecordServiceImpl implements SensorRecordService {
     return sensorRecordRepository.findREcordBetweenTimes(time1, time2);
   }
 
+  @Override
+  public void saveAll(List<SensorRecord> records) {
+    sensorRecordRepository.saveAll(records);
+  }
+
   static SensorRecord unwrapSensorRecord(Optional<SensorRecord> entity, Long id) {
     if (entity.isPresent()) {
       return entity.get();

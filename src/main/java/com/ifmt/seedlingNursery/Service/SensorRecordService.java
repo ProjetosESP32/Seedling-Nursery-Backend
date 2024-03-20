@@ -15,6 +15,8 @@ public interface SensorRecordService {
 
   public List<SensorRecord> getAllSensorRecord();
 
+  public void saveAll(List<SensorRecord> records);
+
   public List<SensorRecord> getAllBySensor(Long sensorId, LocalDateTime time1, LocalDateTime time2);
 
   public List<SensorRecord> getAllBetweenTimes(LocalDateTime time1, LocalDateTime time2);

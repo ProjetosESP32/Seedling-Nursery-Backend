@@ -1,5 +1,7 @@
 package com.ifmt.seedlingNursery.web;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -11,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ifmt.seedlingNursery.Model.Sensor;
 import com.ifmt.seedlingNursery.Model.SensorRecord;
 import com.ifmt.seedlingNursery.Service.SensorRecordService;
+import com.ifmt.seedlingNursery.Service.SensorService;
+import com.ifmt.seedlingNursery.dto.SensorRecordDto;
 import com.ifmt.seedlingNursery.dto.TimePeriodDto;
 
 import lombok.AllArgsConstructor;
@@ -22,6 +27,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/sensor-record")
 public class SensorRecordController {
   SensorRecordService sensorRecordService;
+  SensorService sensorService;
 
   @PostMapping("/{sensorId}")
   public ResponseEntity<SensorRecord> saveSensorRecord(@RequestBody SensorRecord sensorRecord,
@@ -46,6 +52,24 @@ public class SensorRecordController {
     return new ResponseEntity<List<SensorRecord>>(
         sensorRecordService.getAllBySensor(sensorId, times.getTime1(), times.getTime2()),
         HttpStatus.OK);
+  }
+
+  @PostMapping("/save-all")
+  public ResponseEntity<HttpStatus> saveAll(@RequestBody List<SensorRecordDto> recordsDto) {
+    List<SensorRecord> records = new ArrayList<SensorRecord>();
+
+    for (SensorRecordDto dto : recordsDto) {
+      SensorRecord sensorRecord = new SensorRecord();
+      Sensor sensor = sensorService.getSensor(dto.getSensorId());
+      sensorRecord.setSensor(sensor);
+      sensorRecord.setTimeStamp(LocalDateTime.now());
+      sensorRecord.setValue(dto.getValue());
+      records.add(sensorRecord);
+    }
+
+    sensorRecordService.saveAll(records);
+
+    return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
   @GetMapping("/period")
