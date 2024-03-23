@@ -61,6 +61,10 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         .withExpiresAt(new Date(System.currentTimeMillis() + 2700000))
         .sign(Algorithm.HMAC512(SecretConsts.SECRET_KEY));
     response.addHeader("Authorization", "Bearer " + token);
+    response.addHeader("Content-Type", "application/json");
+    response.getWriter().write("{\n\"username\": \"" + authResult.getName() + "\",\n"
+        + "\"authority\": \"" + authResult.getAuthorities().iterator().next().toString() + "\"\n}");
+    response.getWriter().flush();
   }
 
 }
