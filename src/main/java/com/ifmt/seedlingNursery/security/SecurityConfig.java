@@ -16,6 +16,8 @@ import com.ifmt.seedlingNursery.security.manager.CustomAuthenticationManager;
 
 import lombok.AllArgsConstructor;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @AllArgsConstructor
 public class SecurityConfig {
@@ -25,6 +27,8 @@ public class SecurityConfig {
   JWTAuthorizationFilter jwtAuthorizationFilter;
 
   @SuppressWarnings("deprecation")
+  // @CrossOrigin(exposedHeaders = { "Access-Control-Allow-Origin",
+  // "Access-Control-Allow-Credentials", "Authorization" })
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -32,6 +36,7 @@ public class SecurityConfig {
     authenticationFilter.setFilterProcessesUrl("/authenticate");
     // it seems that the upper rulles have preference.
     http
+        .cors(withDefaults())
         .csrf(csrf -> csrf.disable()) // disables protection against csrf attacks
         .authorizeRequests(requests -> requests
             // .requestMatchers("/user/register/*").permitAll()
