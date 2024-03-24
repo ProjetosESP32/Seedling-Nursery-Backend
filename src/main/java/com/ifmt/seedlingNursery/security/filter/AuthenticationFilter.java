@@ -48,7 +48,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
       AuthenticationException failed) throws IOException, ServletException {
     System.out.println("Autenticação falhou.");
     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-    response.getWriter().write(failed.getMessage());
+    response.getWriter().write("{\"errorMessage\": \"" + failed.getMessage() + "\"}");
     response.getWriter().flush();
   }
 
