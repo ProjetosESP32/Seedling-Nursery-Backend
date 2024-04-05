@@ -3,6 +3,7 @@ package com.ifmt.seedlingNursery.security.filter;
 import java.io.IOException;
 import java.util.Date;
 
+import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -13,7 +14,6 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.ifmt.seedlingNursery.Model.Users;
-import com.ifmt.seedlingNursery.security.SecretConsts;
 import com.ifmt.seedlingNursery.security.manager.CustomAuthenticationManager;
 
 import jakarta.servlet.FilterChain;
@@ -27,6 +27,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
   // @Autowires the CustomAuthenticationManager @Component
   private CustomAuthenticationManager customAuthenticationManager;
+  Environment environment;
 
   @Override
   public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
@@ -59,7 +60,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     String token = JWT.create()
         .withSubject(authResult.getName())
         .withExpiresAt(new Date(System.currentTimeMillis() + 2700000))
-        .sign(Algorithm.HMAC512(SecretConsts.SECRET_KEY));
+        .sign(Algorithm.HMAC512(environment.getProperty("spring.datasource.secret-key")));
     response.addHeader("Authorization", "Bearer " + token);
     response.addHeader("Content-Type", "application/json");
     response.getWriter().write("{\n\"username\": \"" + authResult.getName() + "\",\n"

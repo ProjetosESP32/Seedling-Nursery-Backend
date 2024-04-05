@@ -2,6 +2,7 @@ package com.ifmt.seedlingNursery.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -18,13 +19,18 @@ import lombok.AllArgsConstructor;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
+import org.springframework.beans.factory.annotation.Value;
+
 @Configuration
 @AllArgsConstructor
 public class SecurityConfig {
 
   private BCryptPasswordEncoder passwordEncoder;
+
   CustomAuthenticationManager customAuthenticationManager;
   JWTAuthorizationFilter jwtAuthorizationFilter;
+  Environment environment;
+  // SecretConsts secretConsts;
 
   @SuppressWarnings("deprecation")
   // @CrossOrigin(exposedHeaders = { "Access-Control-Allow-Origin",
@@ -32,7 +38,7 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-    AuthenticationFilter authenticationFilter = new AuthenticationFilter(customAuthenticationManager);
+    AuthenticationFilter authenticationFilter = new AuthenticationFilter(customAuthenticationManager, environment);
     authenticationFilter.setFilterProcessesUrl("/authenticate");
     // it seems that the upper rulles have preference.
     http

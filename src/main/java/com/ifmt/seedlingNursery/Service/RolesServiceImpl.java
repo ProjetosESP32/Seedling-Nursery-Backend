@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.ifmt.seedlingNursery.Model.Roles;
@@ -26,6 +28,7 @@ public class RolesServiceImpl {
   RolesRepository rolesRepository;
   UserServiceImpl userServiceImpl;
   UserRepository userRepository;
+  SecretConsts secretConsts;
 
   // Inserts Admin and User roles into db, if it's not there already
   @PostConstruct
@@ -36,7 +39,8 @@ public class RolesServiceImpl {
     }
 
     if (!userRepository.findByUsername("Admin").isPresent()) {
-      Users user = new Users(null, "Admin", SecretConsts.ADMIN_PASS, Arrays.asList(new Roles(1L, "ADMIN")));
+      Users user = new Users(null, "Admin", secretConsts.adminPass,
+          Arrays.asList(new Roles(1L, "ADMIN")));
       userServiceImpl.saveUser(user);
     }
   }

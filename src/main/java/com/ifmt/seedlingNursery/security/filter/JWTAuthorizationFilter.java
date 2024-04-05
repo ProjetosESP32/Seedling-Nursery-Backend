@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,7 +17,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.ifmt.seedlingNursery.security.SecretConsts;
 import com.ifmt.seedlingNursery.security.UserServiceImpl;
 
 import jakarta.servlet.FilterChain;
@@ -29,6 +31,7 @@ import lombok.AllArgsConstructor;
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
   private UserServiceImpl userServiceImpl;
+  private Environment environment;
 
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -41,7 +44,9 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     }
 
     String token = headerAuth.replace("Bearer ", "");
-    String user = JWT.require(Algorithm.HMAC512(SecretConsts.SECRET_KEY)).build().verify(token).getSubject();
+    String user = JWT.require(Algorithm.HMAC512(environment.getProperty("spring.datasource.secret-key"))).build()
+        .verify(token)
+        .getSubject();
 
     UserDetails userDetails = userServiceImpl.loadUserByUsername(user);
     System.out.println("Authority: " + userDetails.getAuthorities().toString());
