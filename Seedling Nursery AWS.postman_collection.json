@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "3c45b8e5-cf55-41b8-856f-38e48424fe90",
-		"name": "Seedling Nursery",
+		"_postman_id": "d9cd4669-5d60-4f56-9ac6-432d4bcdfb5f",
+		"name": "Seedling Nursery AWS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27887659"
+		"_exporter_id": "29302535"
 	},
 	"item": [
 		{
@@ -12,6 +12,16 @@
 				{
 					"name": "Salvar Planta",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -24,16 +34,16 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/plant/9/number/8",
+							"raw": "localhost:8080/plant/1/number/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"plant",
-								"9",
+								"1",
 								"number",
-								"8"
+								"1"
 							]
 						}
 					},
@@ -43,7 +53,14 @@
 					"name": "Buscar Planta",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/plant/1",
 							"host": [
@@ -56,7 +73,95 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Buscar Planta",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VybmFtZSIsImV4cCI6MTcwODgwMTM4N30.ZntbYBImStgvCGq_5wznm7zTQXJg68xK2JvgimT5AqBDVry5cKq7s_823RrIWX3YOIXQDsH2dP-af1WafNbsGw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/plant/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"plant",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 24 Feb 2024 18:18:45 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"height\": 18.2,\n    \"shaftHeight\": 15,\n    \"cap\": 0.12,\n    \"cupFormation\": \"copudo\",\n    \"trunkFormation\": \"troncudo\",\n    \"occurrenceDensity\": 2,\n    \"city\": \"Cuiabá\",\n    \"soilType\": \"Pedregoso com cangas\",\n    \"vegetationType\": \"Serrado\",\n    \"pickupAddress\": \"Rua Aliperto, numero 9\",\n    \"determiningName\": \"O determinador\",\n    \"latitude\": \"6546516\",\n    \"longitude\": \"23465\",\n    \"altitude\": \"24\",\n    \"associatedSpecies\": \"no one\",\n    \"stage\": 2,\n    \"specie\": {\n        \"id\": 1,\n        \"name\": \"Espécie1\",\n        \"scienName\": \"jabuti\",\n        \"description\": \"he ho\"\n    },\n    \"leafs\": 25,\n    \"plantingDate\": \"2022-12-25\",\n    \"donationDate\": null,\n    \"shelf\": 2,\n    \"detInst\": \"\",\n    \"address\": \"Rua ali ó, 3\",\n    \"originMatrix\": 45,\n    \"fertRecord\": \"\",\n    \"pestRecord\": \"\",\n    \"observations\": \"Im observing you\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Buscar Plantas por Espécie",
@@ -64,7 +169,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/plant/specie/1",
+							"raw": "localhost:8080/plant/specie/2",
 							"host": [
 								"localhost"
 							],
@@ -72,7 +177,7 @@
 							"path": [
 								"plant",
 								"specie",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -81,6 +186,16 @@
 				{
 					"name": "Buscar por Endereço",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -101,10 +216,20 @@
 				{
 					"name": "Buscar por Bancada",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/plant/shelf/0",
+							"raw": "localhost:8080/plant/shelf/1",
 							"host": [
 								"localhost"
 							],
@@ -112,7 +237,7 @@
 							"path": [
 								"plant",
 								"shelf",
-								"0"
+								"1"
 							]
 						}
 					},
@@ -121,12 +246,26 @@
 				{
 					"name": "Buscar Todas as Plantas",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/plant/all",
+							"raw": "http://54.207.229.165:8080/plant/all",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"54",
+								"207",
+								"229",
+								"165"
 							],
 							"port": "8080",
 							"path": [
@@ -189,7 +328,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/plant/plants-by-shelf-page/0/page-size/5/shelf/0",
+							"raw": "localhost:8080/plant/plants-by-shelf-page/2/page-size/20/shelf/0",
 							"host": [
 								"localhost"
 							],
@@ -197,9 +336,9 @@
 							"path": [
 								"plant",
 								"plants-by-shelf-page",
-								"0",
+								"2",
 								"page-size",
-								"5",
+								"20",
 								"shelf",
 								"0"
 							]
@@ -283,6 +422,16 @@
 				{
 					"name": "Salvar Espécie",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -313,6 +462,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -325,14 +484,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/specie/4",
+							"raw": "localhost:8080/specie/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"specie",
-								"4"
+								"1"
 							]
 						}
 					},
@@ -341,6 +500,16 @@
 				{
 					"name": "Buscar todas as Espécies",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -437,7 +606,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"shelf\": \"2\",\r\n    \"observations\": \"Esta válvula fica no fim da bancada. Ela atualmente é responsável por irrigar os cajueiros e os jatobás\"\r\n}",
+							"raw": "{\r\n    \"shelf\": \"4\",\r\n    \"observations\": \"Esta válvula fica no fim da bancada. Ela atualmente é responsável por irrigar os cajueiros e os jatobás\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -460,6 +629,21 @@
 				{
 					"name": "Buscar válvula",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin-pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -562,11 +746,21 @@
 				{
 					"name": "Cadastrar sensor",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idLocation\": 2,\r\n    \"idMicrocontroller\": 1,\r\n    \"type\": \"distância\",\r\n    \"mesure\": \"m\",\r\n    \"observations\": \"esse sensor fica no começo da bancada. Ele deve estar sempre na sombra.\"\r\n}",
+							"raw": "{\r\n    \"idLocation\": 2,\r\n    \"idMicrocontroller\": 1,\r\n    \"type\": \"umidade\",\r\n    \"mesure\": \"%\",\r\n    \"observations\": \"esse sensor fica no começo da bancada. Ele deve estar sempre na sombra.\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -610,6 +804,16 @@
 				{
 					"name": "Buscar todos os sensores",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -630,6 +834,16 @@
 				{
 					"name": "Excluir Sensor",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -660,7 +874,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"value\": 40.23\r\n}",
+							"raw": "{\r\n    \"value\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -668,7 +882,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/sensor-record/3",
+							"raw": "http://localhost:8080/sensor-record/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -676,7 +890,7 @@
 							"port": "8080",
 							"path": [
 								"sensor-record",
-								"3"
+								"4"
 							]
 						}
 					},
@@ -705,6 +919,16 @@
 				{
 					"name": "Buscar todos",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -724,15 +948,12 @@
 				},
 				{
 					"name": "Buscar por id do sensor",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"time1\": \"2020-10-10T18:46:43.6529657\",\r\n    \"time2\": \"2024-11-18T18:48:05.0810655\"\r\n}",
+							"raw": "{\r\n    \"time1\": \"2023-02-10T18:46:43.6529657\",\r\n    \"time2\": \"2024-11-18T18:48:05.0810655\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -740,7 +961,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/sensor-record/sensor/3",
+							"raw": "http://localhost:8080/sensor-record/sensor/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -749,7 +970,7 @@
 							"path": [
 								"sensor-record",
 								"sensor",
-								"3"
+								"2"
 							]
 						}
 					},
@@ -765,7 +986,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"time1\": \"2023-10-10T18:46:43.6529657\",\r\n    \"time2\": \"2023-11-18T18:48:05.0810655\"\r\n}",
+							"raw": "{\r\n    \"time1\": \"2022-12-12T18:46:43.6529657\",\r\n    \"time2\": \"2023-12-18T18:48:05.0810655\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -782,6 +1003,45 @@
 							"path": [
 								"sensor-record",
 								"period"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Salvar varios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"sensorId\": 1,\r\n        \"value\": 20\r\n    },\r\n    {\r\n        \"sensorId\": 2,\r\n        \"value\": 20\r\n    },\r\n    {\r\n        \"sensorId\": 3,\r\n        \"value\": 20\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/sensor-record/save-all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sensor-record",
+								"save-all"
 							]
 						}
 					},
@@ -843,6 +1103,21 @@
 				{
 					"name": "Buscar tempos de irrigação por válvula",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "user-pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -883,10 +1158,25 @@
 				{
 					"name": "Excluir Tempo de Irrigação",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin-pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/irrigation-time/delete/40",
+							"raw": "localhost:8080/irrigation-time/delete/50",
 							"host": [
 								"localhost"
 							],
@@ -894,13 +1184,284 @@
 							"path": [
 								"irrigation-time",
 								"delete",
-								"40"
+								"50"
 							]
 						}
 					},
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Registrar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user-api\",\r\n    \"password\": \"api_password@2020\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI}}:8080/user/register/USER",
+							"host": [
+								"{{URI}}"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"register",
+								"USER"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Registrar",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"user-pass\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/user/register/USER",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"register",
+										"USER"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Mar 2024 20:04:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Authenticate",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Admin\",\r\n    \"password\": \"admin-pass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI}}:8080/authenticate",
+							"host": [
+								"{{URI}}"
+							],
+							"port": "8080",
+							"path": [
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/user/junior",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"junior"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Role (401)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/role/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VybmFtZSIsImV4cCI6MTcwODMwMDYyN30.7vYzkEjekazFv-7gG_o0mwPCsU9X9m8G5RChY1a52kgPKEqG9QKHcXz1aMmalQwpNfbbwfFlz5JzHDnWpKMC5Q"
+		},
+		{
+			"key": "URI",
+			"value": "http://54.207.229.165",
+			"type": "string"
 		}
 	]
 }
