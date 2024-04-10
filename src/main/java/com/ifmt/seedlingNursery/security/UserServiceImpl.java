@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ifmt.seedlingNursery.Model.Roles;
@@ -21,14 +21,13 @@ import com.ifmt.seedlingNursery.exception.EntityNotFoundException;
 
 import lombok.AllArgsConstructor;
 
-@SuppressWarnings("null")
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserDetailsService {
 
   UserRepository userRepository;
   RolesRepository rolesRepository;
-  BCryptPasswordEncoder bCryptPasswordEncoder;
+  PasswordEncoder passwordEncoder;
 
   // Creates admin credencials if its not already defined in db.
   /*
@@ -54,7 +53,7 @@ public class UserServiceImpl implements UserDetailsService {
   }
 
   public Users saveUser(Users user) {
-    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+    user.setPassword(passwordEncoder.encode(user.getPassword()));
     return userRepository.save(user);
   }
 

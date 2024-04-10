@@ -25,7 +25,7 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
       response.getWriter().flush();
     } catch (JWTVerificationException e) {
       response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-      response.addHeader("Content-Type", "Application");
+      response.addHeader("Content-Type", "text/plain");
       response.getWriter().write("Token invalido.");
       response.getWriter().flush();
     } catch (RuntimeException e) {
@@ -33,7 +33,5 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
       response.getWriter().write(e.getMessage());
       response.getWriter().flush();
     }
-
   }
-
 }

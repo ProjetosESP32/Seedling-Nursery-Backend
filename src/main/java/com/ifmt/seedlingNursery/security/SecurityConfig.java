@@ -1,32 +1,25 @@
 package com.ifmt.seedlingNursery.security;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.ifmt.seedlingNursery.security.filter.AuthenticationFilter;
-
 import com.ifmt.seedlingNursery.security.filter.ExceptionHandlerFilter;
 import com.ifmt.seedlingNursery.security.filter.JWTAuthorizationFilter;
 import com.ifmt.seedlingNursery.security.manager.CustomAuthenticationManager;
 
 import lombok.AllArgsConstructor;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
-import org.springframework.beans.factory.annotation.Value;
-
 @Configuration
 @AllArgsConstructor
 public class SecurityConfig {
-
-  private BCryptPasswordEncoder passwordEncoder;
-
   CustomAuthenticationManager customAuthenticationManager;
   JWTAuthorizationFilter jwtAuthorizationFilter;
   Environment environment;

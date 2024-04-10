@@ -6,7 +6,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.ifmt.seedlingNursery.security.UserServiceImpl;
@@ -18,12 +18,12 @@ import lombok.AllArgsConstructor;
 public class CustomAuthenticationManager implements AuthenticationManager {
 
   private UserServiceImpl userServiceImpl;
-  private BCryptPasswordEncoder bCryptPasswordEncoder;
+  private PasswordEncoder passwordEncoder;
 
   @Override
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
     UserDetails user = userServiceImpl.loadUserByUsername(authentication.getName());
-    if (!bCryptPasswordEncoder.matches(authentication.getCredentials().toString(), user.getPassword())) {
+    if (!passwordEncoder.matches(authentication.getCredentials().toString(), user.getPassword())) {
       throw new BadCredentialsException("Senha Incorreta");
     }
 

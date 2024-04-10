@@ -4,9 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.ifmt.seedlingNursery.Model.Roles;
@@ -20,7 +17,6 @@ import com.ifmt.seedlingNursery.security.UserServiceImpl;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 
-@SuppressWarnings("null")
 @AllArgsConstructor
 @Service
 public class RolesServiceImpl {
